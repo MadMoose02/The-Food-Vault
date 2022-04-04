@@ -5,22 +5,31 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="INFO 1601 Project for team Kil-A-Bytes 'The Food Vault'">
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="style.css">
     <title>The Food Vault</title>
   </head>
 
   <body>
-
     <!-- Connect Vue.js Application here -->
-    <div id="app"></div>
+    <!-- <div id="app"></div> -->
 
     <!-- Main Navigation bar for top of page -->
-    <nav>
+    <nav id="main-nav-bar" class="nav-bar">
       <ul>
-        <a href="./index.html">Home</a>
-        <a href="./"></a>
+        <a href="./index.html"><button class="selected">Home</button></a>
+        <a href="./catalogue/catalogue.html"><button>Catalogue</button></a>
+        <a href="./nearme/nearme.html"><button>Near Me</button></a>
       </ul>
     </nav>
+
+    <!-- Main View -->
+    <main>
+      <h1><b>Welcome to The Food Vault</b></h2>
+
+      <!-- Trending Today section -->
+      <section id="trending-today"></section>
+
+    </main>
 
     <script src="app.js"></script>
   </body>
