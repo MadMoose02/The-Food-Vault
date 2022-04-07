@@ -20,5 +20,17 @@
     "eslint-plugin-vue": "^8.2.0",
     "prettier": "^2.5.1",
     "vite": "^2.9.1"
-  }
+  },
+  "description": "This template should help get you started developing with Vue 3 in Vite.",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MadMoose02/The-Food-Vault.git"
+  },
+  "author": "Kil-A-Bytes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MadMoose02/The-Food-Vault/issues"
+  },
+  "homepage": "https://github.com/MadMoose02/The-Food-Vault#readme"
 }
