@@ -58,7 +58,7 @@ button.selected {
 }
 
 /* Index card view for trending today section*/
-.container {
+.vertical_container {
   margin-left: 10vw;
   width: 80vw;
   max-width: 950px;
@@ -70,7 +70,7 @@ button.selected {
   flex-wrap: nowrap;
 }
 
-.card_item {
+.vertical_card {
   width: calc(30% - 1rem);
   min-width: calc(25% - 1rem);
   max-width: calc(40% - 1rem);
@@ -86,7 +86,7 @@ button.selected {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
-.testimonials-container {
+.horizontal_container {
   margin-left: 10vw;
   width: 80vw;
   max-width: 950px;
@@ -98,7 +98,7 @@ button.selected {
   flex-wrap: nowrap;
 }
 
-.testimonial-item {
+.horizontal_card {
   width: 100%;
   height: 100%;
   display: flex;
