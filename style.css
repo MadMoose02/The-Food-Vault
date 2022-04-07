@@ -58,7 +58,7 @@ button.selected {
 }
 
 /* Index card view for trending today section*/
-.trending-today-container {
+.container {
   margin-left: 10vw;
   width: 80vw;
   max-width: 950px;
@@ -70,7 +70,7 @@ button.selected {
   flex-wrap: nowrap;
 }
 
-.trending-today-item {
+.card_item {
   width: calc(30% - 1rem);
   min-width: calc(25% - 1rem);
   max-width: calc(40% - 1rem);
@@ -142,4 +142,17 @@ button.selected {
   align-items: center;
   margin-bottom: 1rem;
   padding: 1rem;
+}
+
+/* form styling for the near me page */
+#form {
+  padding: 15px;
+  margin-left: 30px;
+  font-size: 20px;
+  margin-right: 600px;
+}
+
+.text{
+  text-align: left;
+  margin-left: 360px;
 }

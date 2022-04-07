@@ -8,7 +8,7 @@
     <meta name="description" content="INFO 1601 Project for team Kil-A-Bytes 'The Food Vault'">
     <link rel="stylesheet"   href="../style.css">
   </head>
-
+  
   <body>
     <!-- Connect Vue.js Application here -->
     <!-- <div id="app"></div> -->
@@ -23,9 +23,27 @@
     </nav>
 
     <!-- Main View -->
-    <h1>
-      This is the Near Me Page
+    <h1 class="text" >
+      Find Restaurants Near You!
     </h1>
+
+    <section id = "form">
+    <p>The following is a list of areas in Trinidad.</p>
+    
+    <fieldset>
+    <form>
+      <label>Choose a location near you:</label>
+      <select>
+        <option value="chag">Chaguanas</option>
+        <option value="pos">Port of Spain</option>
+        <option value="sanfernando">San Fernando</option>
+        <option value="siparia">Siparia</option>
+      </select>
+      <br><br>
+      <input type="submit" value="Submit">
+    </form>
+    </fieldset>
+  </section>
 
     <script src="http://localhost:3000/assets/modules/channel-web/inject.js"></script>
     <script src="../app.js"></script>
