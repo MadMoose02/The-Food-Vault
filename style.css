@@ -57,7 +57,6 @@ button.selected {
   background: #00bcd4;
 }
 
-/* Index card view for trending today section*/
 .vertical_container {
   margin-left: 10vw;
   width: 80vw;
@@ -112,7 +111,6 @@ button.selected {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
-  /* testimonial user picture */
 .user-picture {
   width: calc(30% - 1rem);
   min-width: calc(25% - 1rem);
@@ -128,7 +126,6 @@ button.selected {
   padding: 1rem;
 }
 
-  /* testimonial user name and comment */
 .user-name-comment {
   width: calc(70% - 1rem);
   min-width: calc(65% - 1rem);
