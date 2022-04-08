@@ -25,42 +25,48 @@
 
     <!-- Main View -->
     <main>
-      <h1 class="text">Find Restaurants Near You!</h1>
+      <section id="catalogue">
+        <br><br>
+        <h2><b>Browse Our Catalogue</b></h2>
+        <hr><br>
+  
+        <form id="filter-catalogue">
+          <label>Choose a location:</label>
+          <select>
+            <option value="chag">Chaguanas</option>
+            <option value="pos">Port of Spain</option>
+            <option value="sanfernando">San Fernando</option>
+            <option value="siparia">Siparia</option>
+          </select>
+          <br><br>
+          <label>Choose a cuisine/style:</label>
+          <select>
+            <option value="undecided">Undecided</option>
+            <option value="thai">Thai</option>
+            <option value="indian">Indian</option>
+            <option value="chinese">Chinese</option>
+          </select>
+          <br><br>
+          <label>Choose a rating:</label>
+          <select>
+            <option value="rating">Any</option> <!-- if the rating does not matter -->
+            <option value="star1">1</option>
+            <option value="star2">2</option>
+            <option value="star3">3</option>
+            <option value="star4">4</option>
+            <option value="star5">5</option>
+          </select>
+          <br><br>
+          <input type="submit" class="button" value="Show Me Places!">
 
-      <section id = "form">
-        <p>The following is a list of areas in Trinidad, cuisine preferences & restaurant ratings.</p>
-        <fieldset>
-          <form>
-            <label>Choose a location near you:</label>
-            <select>
-              <option value="chag">Chaguanas</option>
-              <option value="pos">Port of Spain</option>
-              <option value="sanfernando">San Fernando</option>
-              <option value="siparia">Siparia</option>
-            </select>
-            <br> <br>
-            <label>Choose a cuisine style:</label>
-            <select>
-              <option value="undecided">Undecided</option>
-              <option value="thai">Thai</option>
-              <option value="indian">Indian</option>
-              <option value="chinese">Chinese</option>
-            </select>
-            <br> <br>
-            <label>Choose a rating:</label>
-            <select>
-              <option value="rating">Any</option> <!-- if the rating does not matter -->
-              <option value="star1">1</option>
-              <option value="star2">2</option>
-              <option value="star3">3</option>
-              <option value="star4">4</option>
-              <option value="star5">5</option>
-            </select>
+          <p>(You can always search our entire catalogue for all areas by searching from the get-go!)</p>
+        </form>
 
-            <br><br>
-            <input type="submit" value="Submit">
-          </form>
-        </fieldset>
+        <!-- Restaurant Listing from Database -->
+        <div id="restaurant-listing" class="vertical-">
+          <h3>*Restaurant Listing Here*</h3>
+        </div>
+
       </section>
     </main>
 
