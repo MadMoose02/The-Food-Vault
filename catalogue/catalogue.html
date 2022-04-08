@@ -7,8 +7,9 @@
     <meta name="author"      content="Team Kil-A-Bytes">
     <meta name="description" content="INFO 1601 Project for team Kil-A-Bytes 'The Food Vault'">
     <link rel="stylesheet"   href="../style.css">
+    <title>Catalogue</title>
   </head>
-
+  
   <body>
     <!-- Connect Vue.js Application here -->
     <!-- <div id="app"></div> -->
@@ -17,58 +18,67 @@
     <nav id="main-nav-bar" class="nav-bar">
       <ul>
         <a href="../index.html"><button>Home</button></a>
+        <a href="../testimonials/testimonials.html"><button>Testimonials</button></a>
         <a href="../catalogue/catalogue.html"><button class="selected">Catalogue</button></a>
-        <a href="../nearme/nearme.html"><button>Near Me</button></a>
       </ul>
     </nav>
 
     <!-- Main View -->
     <main>
-      <h1> This is the Catalogue Page</h1>
-      <h2> Here you can find the listing of all restaurants under each cuisine category</h2>
-      <h3> Click on the cuisine category to view the list of restaurants.<br>Alternatively, you can search for a place right from the get go.</h3>
+      <h1 class="text">Find Restaurants Near You!</h1>
 
-      <section id = "catalogue">
-        <br><hr>
-        <h2>CUISINES</h2>
-        <hr><br>
-        <div class="vertical_container">
-          <div class="vertical_card">
-            <img src="https://picsum.photos/150" alt="">
-            <h3>Chinese</h3>
+      <section id = "form">
+        <p>The following is a list of areas in Trinidad, cuisine preferences & restaurant ratings.</p>
+        <fieldset>
+          <form>
+            <label>Choose a location near you:</label>
+            <select>
+              <option value="chag">Chaguanas</option>
+              <option value="pos">Port of Spain</option>
+              <option value="sanfernando">San Fernando</option>
+              <option value="siparia">Siparia</option>
+            </select>
+            <br> <br>
+            <label>Choose a cuisine style:</label>
+            <select>
+              <option value="undecided">Undecided</option>
+              <option value="thai">Thai</option>
+              <option value="indian">Indian</option>
+              <option value="chinese">Chinese</option>
+            </select>
+            <br> <br>
+            <label>Choose a rating:</label>
+            <select>
+              <option value="rating">Any</option> <!-- if the rating does not matter -->
+              <option value="star1">1</option>
+              <option value="star2">2</option>
+              <option value="star3">3</option>
+              <option value="star4">4</option>
+              <option value="star5">5</option>
+            </select>
 
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
-            </p>
-          </div>
-          <div class="vertical_card">
-            <img src="https://picsum.photos/150" alt="">
-            <h3>Fried</h3>
-            
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
-            </p>
-          </div>
-          <div class="vertical_card">
-            <img src="https://picsum.photos/150" alt="">
-            <h3>Thai</h3>
-
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
-            </p>
-          </div>
-          <div class="vertical_card">
-            <img src="https://picsum.photos/150" alt="">
-            <h3>Indian</h3>
-            
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
-            </p>
-          </div>
-        </div>
+            <br><br>
+            <input type="submit" value="Submit">
+          </form>
+        </fieldset>
       </section>
     </main>
 
+    <!-- Footer -->
+    <footer>
+      <br><hr>
+      <p>
+        <a href="https://www.instagram.com/thefoodvault">
+          <img src="images/instagram.png" alt="Instagram" width="30" height="30">
+        </a>
+        <a href="https://www.twitter.com/thefoodvault">
+          <img src="images/twitter.png" alt="Twitter" width="30" height="30">
+        </a>
+      </p>
+      <p>
+        &copy; The Food Vault by Team Kil-A-Bytes
+      </p>
+    </footer>
 
     <script src="http://localhost:3000/assets/modules/channel-web/inject.js"></script>
     <script src="../app.js"></script>
