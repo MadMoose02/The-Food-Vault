@@ -152,3 +152,11 @@ button.selected {
   text-align: left;
   margin-left: 360px;
 }
+
+#review {
+  padding: 1em;
+}
+
+.label{
+  display: inline;
+}
