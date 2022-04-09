@@ -7,96 +7,118 @@
     <meta name="description" content="INFO 1601 Project for team Kil-A-Bytes 'The Food Vault'">
     <link rel="stylesheet"   href="../style.css">
     <title>Testimonials</title>
+    <style>
+      fieldset {
+        width: 96%;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        padding: 20px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+      }
+    </style>
   </head>
 
   <body>
-    <!-- Connect Vue.js Application here -->
-    <!-- <div id="app"></div> -->
-
-    <!-- Main Navigation bar for top of page -->
-    <nav id="main-nav-bar" class="nav-bar">
-      <ul>
-        <a href="../index.html"><button>Home</button></a>
-        <a href="../testimonials/testimonials.html"><button class="selected">Testimonials</button></a>
-        <a href="../catalogue/catalogue.html"><button>Catalogue</button></a>
-      </ul>
-    </nav>
-
+    
     <!-- Main View -->
-    <main>
-      <!-- Testimonials section -->
-      <section id="testimonials">
-        <br><br>
-        <h2><b>See What Our Users Have To Say About Us!</b></h2>
-        <hr><br>
-        <div class="horizontal-container">
-          <div class="horizontal-card">
-            <div class="user-name-comment">
-              <h4>Mary Jane</h4>
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
-              </p>
-            </div>
-            <div class="user-picture">
-              <img src="https://picsum.photos/150" alt="">
-            </div>
-          </div>
-          <div class="horizontal-card">
-            <div class="user-name-comment">
-              <h4>John Doe</h4>
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
-              </p>
-            </div>
-            <div class="user-picture">
-              <img src="https://picsum.photos/150" alt="">
-            </div>
-          </div>
-          <div class="horizontal-card">
-            <div class="user-name-comment">
-              <h4>Another Irrelevant Person</h4>
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
-              </p>
-            </div>
-            <div class="user-picture">
-              <img src="https://picsum.photos/150" alt="">
-            </div>
-          </div>
+    <main id="app">
+      <div>
+
+        <!-- Side Nav Chat-area -->
+        <div id="chatbot-area" class="side-nav">
+          <a href="javascript:void(0)" class="closebutton" onclick="closeChatArea()">&times;</a>
+          <iframe id="annabot-iframe" src="https://tfv-annabot.herokuapp.com/s/chat" frameborder="1" width="90%" height="90%"></iframe>
         </div>
-      </section>
-      <br><br>
-      <hr>
-      <h2><b>Leave Your Review Too!</b></h2>
-      <section id="testimonials" class = "horizontal-container">
-        <fieldset>
-        <form id="review">
-            <b>
-            <legend>Testimonial Form</legend>
-            </b>
-            </br>
-                <label class = "label"> Name: <br>
-                    <input type="name" name="Name" />
-                </label>
+
         
-                <br> </br>
+        <!-- Main page content goes here -->
+        <div id="page-content">
+          
+          <!-- Main Navigation bar for top of page -->
+          <nav id="main-nav-bar" class="nav-bar">
+            <ul>
+              <a href="../index.html"><button>Home</button></a>
+              <a href="../testimonials/testimonials.html"><button class="selected">Testimonials</button></a>
+              <a href="../catalogue/catalogue.html"><button>Catalogue</button></a>
+            </ul>
+          </nav>
 
-                <label for="Testimonial" class = "label">Testimonial: </label>
-                <br> 
-                    <textarea >
-                    </textarea>
-        
-                <br> </br>
-            
-            <input type="submit" value="submit" />
-            <p>NB: You may use "Annonymous" in the "Name" field should you wish to keep your identity confidential.</p>
-        </form>
-      </fieldset>
-    </section>
+          <!-- Testimonials section -->
+          <section id="testimonials">
+            <br><br>
+            <h2><b>See What Our Users Have To Say About Us!</b></h2>
+            <hr><br>
+            <div class="horizontal-container">
+              <div class="horizontal-card">
+                <div class="user-name-comment">
+                  <h4>Mary Jane</h4>
+                  <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
+                  </p>
+                </div>
+                <div class="user-picture">
+                  <img src="https://picsum.photos/150" alt="">
+                </div>
+              </div>
+              <div class="horizontal-card">
+                <div class="user-name-comment">
+                  <h4>John Doe</h4>
+                  <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
+                  </p>
+                </div>
+                <div class="user-picture">
+                  <img src="https://picsum.photos/150" alt="">
+                </div>
+              </div>
+              <div class="horizontal-card">
+                <div class="user-name-comment">
+                  <h4>Another Irrelevant Person</h4>
+                  <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
+                  </p>
+                </div>
+                <div class="user-picture">
+                  <img src="https://picsum.photos/150" alt="">
+                </div>
+              </div>
+            </div>
+          </section>
 
+          <!-- User review section -->
+          <section id="add-review" class="horizontal-container">
+            <br><br>
+            <h2><b>Have Something To Say About Our Service?</b></h2>
+            <fieldset>
+              <form id="review">
+                  <b><legend>Let Us Know Your Thoughts!</legend></b>
+                  </br>
 
+                  <!-- Name Data field -->
+                  <label class="label">Name:</label>
+                  <br>
+                  <input type="name" name="Name" style="width: 300px;">
+                  <br></br>
+
+                  <!-- Comment Data field -->
+                  <label for="Testimonial" class="label">Testimonial:</label>
+                  <br> 
+                  <textarea style="width: 300px; height: 100px;"></textarea>
+                  <br><br>
+                  
+                  <input type="submit" value="Post Review" />
+                  <p>NB: You may use "Annonymous" in the "Name" field should you wish to keep your identity confidential.</p>
+              </form>
+            </fieldset>
+          </section>
+        </div>
+
+      </div>
     </main>
 
+    <!-- Button to Expand Chat-area -->
+    <button id="fixed-button" onclick="openChatArea()">Expand Chat</button>
+  
     <!-- Footer -->
     <footer>
       <br><br><hr>
@@ -113,7 +135,17 @@
       </p>
     </footer>
 
-    <script src="http://localhost:3000/assets/modules/channel-web/inject.js"></script>
-    <script src="app.js"></script>
+    <!-- Side nav controls -->
+    <script>
+      function openChatArea() {
+        document.getElementById("chatbot-area").style.width = "390px";
+        document.getElementById("page-content").style.marginLeft = "300px";
+      }
+
+      function closeChatArea() {
+        document.getElementById("chatbot-area").style.width = "0";
+        document.getElementById("page-content").style.marginLeft = "0";
+      }
+    </script>
   </body>
 </html>
