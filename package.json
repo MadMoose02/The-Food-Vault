@@ -37,7 +37,6 @@
     "deep-is": "^0.1.4",
     "doctrine": "^3.0.0",
     "electron-to-chromium": "^1.4.103",
-    "esbuild-darwin-64": "^0.14.30",
     "escalade": "^3.1.1",
     "escape-string-regexp": "^1.0.5",
     "eslint-config-prettier": "^8.5.0",
