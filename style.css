@@ -4,7 +4,7 @@ html, body {
 
 #app {
   width: 400px;
-  height: 100vh;
+  height: 100%;
   margin: auto;
   text-align: center;
   display: flex;
@@ -13,10 +13,57 @@ html, body {
   align-items: center;
 }
 
+footer {
+  /* position: absolute; */
+  bottom: 0;
+  width: 100%;
+}
+
 h1, h2, h3 {
   margin-bottom: 1rem;
   font-weight: normal;
   text-align: center;
+}
+
+#fixed-button {
+  position: sticky;
+  bottom: 20px;
+  left: 20px;
+  width: 180px;
+  font-size: medium;
+}
+
+.side-nav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1; /* Stay at front of page */
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px;
+  transition: 0.5s;
+}
+
+.side-nav .closebutton {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.closebutton {
+  font-size: 36px;
+  background-color: aliceblue;
+  border: none;
+  width: 40px;
+}
+
+#page-content {
+  padding: 20px;
+  transition: margin-left 0.5s;
 }
 
 #main-nav-bar {
@@ -41,7 +88,8 @@ button {
   color: white;
   font-size: 18px;
   border: 0;
-  padding: 0.7em 4.5em;
+  padding: 0.7em 2.5em;
+  width: 260px;
 }
 
 button:focus {
