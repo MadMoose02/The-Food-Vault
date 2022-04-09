@@ -7,71 +7,125 @@
     <meta name="description" content="INFO 1601 Project for team Kil-A-Bytes 'The Food Vault'">
     <link rel="stylesheet"   href="style.css">
     <title>The Food Vault</title>
+    <style>
+      .side-nav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1; /* Stay at front of page */
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden; /* Disable horizontal scroll */
+        padding-top: 60px;
+        transition: 0.5s;
+      }
+      .side-nav .closebutton {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+      }
+
+      .closebutton {
+        font-size: 36px;
+        background-color: aliceblue;
+        border: none;
+        width: 40px;
+      }
+
+      #app-container {
+        transition: margin-left .5s;
+        padding: 20px;
+      }
+
+      #fixedbutton {
+        position: fixed;
+        bottom: 0px;
+        right: 0px; 
+      }
+    </style>
   </head>
 
   <body>
-    <!-- Connect Vue.js Application here -->
-    <!-- <div id="app"></div> -->
-
-    <!-- Main Navigation bar for top of page -->
-    <nav id="main-nav-bar" class="nav-bar">
-      <ul>
-        <a href="./index.html"><button class="selected">Home</button></a>
-        <a href="./testimonials/testimonials.html"><button>Testimonials</button></a>
-        <a href="./catalogue/catalogue.html"><button>Catalogue</button></a>
-      </ul>
-    </nav>
-
     <!-- Main View -->
-    <main>
-      <br>
-      <h1><b>Welcome to The Food Vault</b></h2>
-
-      <!-- Trending Today section -->
-      <section id="trending-today">
-        <br>
-        <h2><b>See Which Places Are Trending Today</b></h2>
-        <br>
-        <div class="vertical_container">
-          <div class="vertical_card">
-            <img src="https://picsum.photos/150" alt="">
-            <h3>Burger</h3>
-
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
-            </p>
-          </div>
-          <div class="vertical_card">
-            <img src="https://picsum.photos/150" alt="">
-            <h3>Burger</h3>
-            
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
-            </p>
-          </div>
-          <div class="vertical_card">
-            <img src="https://picsum.photos/150" alt="">
-            <h3>Burger</h3>
-
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
-            </p>
-          </div>
-          <br>
+    <main id="app">
+      <div id="app-container">
+        <!-- Main Navigation bar for top of page -->
+        <nav id="main-nav-bar" class="nav-bar">
+          <ul>
+            <a href="./index.html"><button class="selected">Home</button></a>
+            <a href="./testimonials/testimonials.html"><button>Testimonials</button></a>
+            <a href="./catalogue/catalogue.html"><button>Catalogue</button></a>
+          </ul>
+        </nav>
+        <div id="chatbot-area" class="side-nav">
+          <a href="javascript:void(0)" class="closebutton" onclick="closeChatArea()">&times;</a>
+          <iframe id="annabot-iframe" src="https://tfv-annabot.herokuapp.com/s/chat" frameborder="1" width="90%" height="90%"></iframe>
         </div>
-      </section>
+
+        <br>
+        <h1><b>Welcome to The Food Vault</b></h2>
+  
+        <!-- Trending Today section -->
+        <div id="page-content">
+          <section id="trending-today">
+            <br>
+            <h2><b>See Which Places Are Trending Today</b></h2>
+            <br>
+            <div class="vertical-container">
+              <div class="vertical-card">
+                <img src="https://picsum.photos/150" alt="">
+                <h3>Burger</h3>
+    
+                <p>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
+                </p>
+              </div>
+              <div class="vertical-card">
+                <img src="https://picsum.photos/150" alt="">
+                <h3>Burger</h3>
+                
+                <p>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
+                </p>
+              </div>
+              <div class="vertical-card">
+                <img src="https://picsum.photos/150" alt="">
+                <h3>Burger</h3>
+    
+                <p>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
+                </p>
+              </div>
+              <br>
+            </div>
+          </section>
+        </div>
+      </div>
     </main>
+    <button id="fixed-button" onclick="openChatArea()">Expand Chat</button>
 
-    <iframe id="annabot-iframe" src="https://tfv-annabot.herokuapp.com/s/chat" frameborder="1" width="300" height="900"></iframe>
+    <!-- Side Navigation Bar Scripts -->
+    <script>
+      function openChatArea() {
+        document.getElementById("chatbot-area").style.width = "390px";
+        document.getElementById("app-container").style.marginLeft = "300px";
+        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+      }
 
-    <!-- <script src="https://tfv-annabot.herokuapp.com/assets/modules/channel-web/inject.js"></script>
-    <script src="app.js"></script> -->
+      function closeChatArea() {
+        document.getElementById("chatbot-area").style.width = "0";
+        document.getElementById("app-container").style.marginLeft = "0";
+        document.body.style.backgroundColor = "white";
+      }
+    </script>
   </body>
   
   <!-- Footer -->
   <footer>
-    <br><br>
-    <hr>
+    <br><br><hr>
     <p>
       <a href="https://www.instagram.com/thefoodvault">
         <img src="images/instagram.png" alt="Instagram" width="30" height="30">
