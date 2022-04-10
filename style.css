@@ -1,5 +1,6 @@
-html, body {
+body {
   font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(to bottom, #d6f1fa 0%, rgb(239, 212, 212) 100%);
 }
 
 #app {
@@ -14,7 +15,7 @@ html, body {
 }
 
 footer {
-  /* position: absolute; */
+  position: relative;
   bottom: 0;
   width: 100%;
 }
@@ -160,36 +161,6 @@ button.selected {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
-.user-picture {
-  width: calc(30% - 1rem);
-  min-width: calc(25% - 1rem);
-  max-width: calc(40% - 1rem);
-  height: calc(50% - 1rem);
-  border-radius: 22px;
-  background-color: #fafafa9e;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding: 1rem;
-}
-
-.user-name-comment {
-  width: calc(70% - 1rem);
-  min-width: calc(65% - 1rem);
-  max-width: calc(80% - 1rem);
-  height: calc(50% - 1rem);
-  border-radius: 22px;
-  background-color: #fafafa;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding: 1rem;
-}
-
 /* form styling for the catalogue area */
 #filter-catalogue {
   padding: 15px;
@@ -204,8 +175,4 @@ button.selected {
 
 #review {
   padding: 1em;
-}
-
-.label{
-  display: inline;
 }

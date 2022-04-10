@@ -11,9 +11,11 @@
       fieldset {
         width: 96%;
         border-radius: 10px;
+        margin-top: 10px;
         border: 1px solid #ccc;
         padding: 20px;
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(to bottom, #f2f2f2, #fafafa);
       }
     </style>
   </head>
@@ -49,47 +51,41 @@
             <h2><b>See What Our Users Have To Say About Us!</b></h2>
             <hr><br>
             <div class="horizontal-container">
-              <div class="horizontal-card">
+              <div class="horizontal-card" style="background-color: white;">
                 <div class="user-name-comment">
                   <h4>Mary Jane</h4>
                   <p>
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
                   </p>
                 </div>
-                <div class="user-picture">
-                  <img src="https://picsum.photos/150" alt="">
-                </div>
               </div>
-              <div class="horizontal-card">
+              <div class="horizontal-card" style="background-color: white;">
                 <div class="user-name-comment">
                   <h4>John Doe</h4>
                   <p>
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
                   </p>
                 </div>
-                <div class="user-picture">
-                  <img src="https://picsum.photos/150" alt="">
-                </div>
+                
               </div>
-              <div class="horizontal-card">
+              <div class="horizontal-card" style="background-color: white;">
                 <div class="user-name-comment">
                   <h4>Another Irrelevant Person</h4>
                   <p>
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
                   </p>
                 </div>
-                <div class="user-picture">
-                  <img src="https://picsum.photos/150" alt="">
-                </div>
+                
               </div>
             </div>
           </section>
 
           <!-- User review section -->
-          <section id="add-review" class="horizontal-container">
-            <br><br>
-            <h2><b>Have Something To Say About Our Service?</b></h2>
-            <fieldset>
+          <br><br>
+          <h2><b>Have Something To Say About Our Service?</b></h2>
+          <hr><br>
+          <fieldset>
+            <section id="add-review" class="horizontal-container">
               <form id="review">
                   <b><legend>Let Us Know Your Thoughts!</legend></b>
                   </br>
@@ -107,7 +103,7 @@
                   <br><br>
                   
                   <input type="submit" value="Post Review" />
-                  <p>NB: You may use "Annonymous" in the "Name" field should you wish to keep your identity confidential.</p>
+                  <p>Tip: You can leave the "Name" field blank if you wish to be anonymous.</p>
               </form>
             </fieldset>
           </section>
@@ -121,7 +117,7 @@
   
     <!-- Footer -->
     <footer>
-      <br><br><hr>
+      <br><hr>
       <p>
         <a href="https://www.instagram.com/thefoodvault">
           <img src="images/instagram.png" alt="Instagram" width="30" height="30">
