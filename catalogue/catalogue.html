@@ -15,7 +15,121 @@
         width: 70%;
         margin: 0 auto;
       }
+      #submit-form-button {
+        cursor: pointer;
+        display: inline-block;
+        background: #333;
+        color: white;
+        font-size: 13px;
+        border: 0;
+        padding: 0.5em;
+        padding-left: 9px;
+        padding-right: 9px;
+        min-width: 60px;
+      }
     </style>
+
+    <script>
+      // On page load, initialise all selection options
+      window.onload = function() {
+        auth = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imtlc2hhbm1vb3NhaUBnbWFpbC5jb20iLCJmaXJzdG5hbWUiOm51bGwsImxhc3RuYW1lIjpudWxsLCJpZCI6MSwicm9sZXMiOiJ1c2VyIiwiaWF0IjoxNjQ5NDc4NTA4fQ.niRMnlB_nSOMK0DeHuutpxwCwgvyvrGjzXewdytAwAI';
+        
+        // Initialise all areas
+        let response = fetch(
+          'http://the-food-vault.herokuapp.com/nc/the_food_vault_scbp/api/v1/Areas?fields=name&sort=name',
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'xc-auth' : auth
+            }
+          }
+        ).then(function(response) {
+          // Parse the response as JSON
+          return response.json();
+        }).then(function(json) {
+          // Loop through the JSON and add the areas to the selection list
+          for (let area of json) {
+            // Create new option
+            let option    = document.createElement('option');
+            option.value  = area.id;
+            option.text   = area.name;
+
+            // Add the option to the selection list
+            document.getElementById('area-selections').appendChild(option);
+          }
+        }).catch(function(error) {
+          console.log(error);
+        });
+
+        // Initialise all cuisines
+        response = fetch(
+          // URL to fetch
+          'https://the-food-vault.herokuapp.com/nc/the_food_vault_scbp/api/v1/Cuisines?fields=style&sort=style',
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'xc-auth' : auth
+            }
+          }
+        ).then(function(response) {
+          // Parse the response as JSON
+          return response.json();
+        }).then(function(json) {
+          // Loop through the JSON and add the cuisines to the selection list
+          for (let cuisine of json) {
+            // Create new option
+            let option    = document.createElement('option');
+            option.value  = cuisine.id;
+            option.text   = cuisine.style;
+
+            // Add the option to the selection list
+            document.getElementById('cuisine-selections').appendChild(option);
+          }
+        }).catch(function(error) {
+          console.log(error);
+        });
+
+        // Initialise all ratings
+        let ratings = [];
+        response = fetch(
+          // URL to fetch
+          'https://the-food-vault.herokuapp.com/nc/the_food_vault_scbp/api/v1/Restaurants/groupby?column_name=rating&sort=rating',
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'xc-auth' : auth
+            }
+          }
+        ).then(function(response) {
+          // Parse the response as JSON
+          return response.json();
+        }).then(function(json) {
+          // Loop through the JSON and add the ratings to the selection list
+          for (let rating of json) {
+            // Check if the rating is already in the list
+            let curr_rating = rating.rating[0];
+            if (!ratings.includes(curr_rating)) {
+              // Create new option
+              let option    = document.createElement('option');
+              option.value  = curr_rating + '-star';
+              option.text   = curr_rating;
+
+              // Add the option to the selection list
+              document.getElementById('rating-selections').appendChild(option);
+
+              // Add the rating to the list
+              ratings.push(curr_rating);
+            }
+          }
+        }).catch(function(error) {
+          console.log(error);
+        });
+
+      }
+    </script>
   </head>
   
   <body>
@@ -53,9 +167,6 @@
                 <br>
                 <select id="cuisine-selections" class="selection-list">
                   <option value="undecided">Any</option>
-                  <option value="thai">Thai</option>
-                  <option value="indian">Indian</option>
-                  <option value="chinese">Chinese</option>
                 </select>
                 <br><br>
 
@@ -63,25 +174,16 @@
                 <br>
                 <select id="area-selections" class="selection-list">
                   <option value="all">Any</option>
-                  <option value="chag">Chaguanas</option>
-                  <option value="pos">Port of Spain</option>
-                  <option value="sanfernando">San Fernando</option>
-                  <option value="siparia">Siparia</option>
                 </select>
                 <br><br>
 
                 <label>Choose a rating:</label>
                 <br>
                 <select id="rating-selections" class="selection-list">
-                  <option value="rating">Any</option> <!-- if the rating does not matter -->
-                  <option value="star1">1</option>
-                  <option value="star2">2</option>
-                  <option value="star3">3</option>
-                  <option value="star4">4</option>
-                  <option value="star5">5</option>
+                  <option value="rating">Any</option>
                 </select>
                 <br><br>
-                <input type="button" value="Show Me Places!" onclick="getRestaurantListing()">
+                <input id="submit-form-button" type="button" value="Show Me Places!" onclick="getRestaurantListing()">
       
                 <p>(You can always search our entire catalogue for all areas by searching from the get-go!)</p>
               </form>
@@ -93,6 +195,7 @@
             </div>
           </section>
         </div>
+        <br><br><hr>
 
     </main>
 
@@ -101,15 +204,14 @@
 
     <!-- Footer -->
     <footer>
-      <br><br><hr>
         <div class="horizontal-container">
           <p>Find Us @</p>
-          <div class="vertical-container" style="width: 170px;">
+          <div class="vertical-container" style="width: fit-content;">
             <a href="https://www.instagram.com/thefoodvault">
-              <img src="images/instagram.png" alt="Instagram" width="30" height="30">
+              <img src="/images/instagram.png" alt="Instagram" width="30" height="30">
             </a>
             <a href="https://www.twitter.com/thefoodvault">
-              <img src="images/twitter.png" alt="Twitter" width="30" height="30">
+              <img src="/images/twitter.png" alt="Twitter" width="30" height="30">
             </a>
           </div>
           <div id="trademark">
@@ -120,6 +222,7 @@
           </div>
         </div>
     </footer>
+    <br>
 
     <!-- Side nav controls -->
     <script>
@@ -146,9 +249,6 @@
         if (rating == "rating") {
           rating = "";
         }
-
-        // AJAX request to get the restaurant listing from the NocoDB database via GET request
-        let response = fetch("https://nocodb.herokuapp.com/api/restaurants?area=" + area + "&cuisine=" + cuisine + "&rating=" + rating);
       }
     </script>
 
