@@ -77,9 +77,9 @@
     <!-- Footer -->
     <footer>
       <br><br><hr>
-      <p>
         <div class="horizontal-container">
-          <div class="vertical-container">
+          <p>Find Us @</p>
+          <div class="vertical-container" style="width: 150px;">
             <a href="https://www.instagram.com/thefoodvault">
               <img src="images/instagram.png" alt="Instagram" width="30" height="30">
             </a>
@@ -94,21 +94,23 @@
             </p>
           </div>
         </div>
-
     </footer>
 
     <!-- Side nav controls -->
     <script>
+
       let x = window.innerWidth;
       let y = window.innerHeight;
       let platform = window.navigator.platform;
 
       // disable active class of side nav area for mobile after window loads
       window.onload = function() {
-        if (x < y && platform !== "MacIntel" || platform !== "Win32" || platform !== "Linux x86_64") {
+        // if (x < y && platform !== "MacIntel" || platform !== "Win32" || platform !== "Linux x86_64") {
+        if (x < y) {
           document.getElementById("chatbot-area").classList.remove("active");
         }
       }
+
 
       function openChatArea() {
         document.getElementById("chatbot-area").style.width = "390px";
