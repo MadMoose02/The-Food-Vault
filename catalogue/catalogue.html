@@ -10,64 +10,80 @@
   </head>
   
   <body>
-    <!-- Connect Vue.js Application here -->
-    <!-- <div id="app"></div> -->
-
-    <!-- Main Navigation bar for top of page -->
-    <nav id="main-nav-bar" class="nav-bar">
-      <ul>
-        <a href="../index.html"><button>Home</button></a>
-        <a href="../testimonials/testimonials.html"><button>Testimonials</button></a>
-        <a href="../catalogue/catalogue.html"><button class="selected">Catalogue</button></a>
-      </ul>
-    </nav>
-
     <!-- Main View -->
-    <main>
-      <section id="catalogue">
-        <br><br>
-        <h2><b>Browse Our Catalogue</b></h2>
-        <hr><br>
-  
-        <form id="filter-catalogue">
-          <label>Choose a location:</label>
-          <select>
-            <option value="chag">Chaguanas</option>
-            <option value="pos">Port of Spain</option>
-            <option value="sanfernando">San Fernando</option>
-            <option value="siparia">Siparia</option>
-          </select>
-          <br><br>
-          <label>Choose a cuisine/style:</label>
-          <select>
-            <option value="undecided">Undecided</option>
-            <option value="thai">Thai</option>
-            <option value="indian">Indian</option>
-            <option value="chinese">Chinese</option>
-          </select>
-          <br><br>
-          <label>Choose a rating:</label>
-          <select>
-            <option value="rating">Any</option> <!-- if the rating does not matter -->
-            <option value="star1">1</option>
-            <option value="star2">2</option>
-            <option value="star3">3</option>
-            <option value="star4">4</option>
-            <option value="star5">5</option>
-          </select>
-          <br><br>
-          <input type="submit" class="button" value="Show Me Places!">
+    <main id="app">
+      <div>
+        
+        <!-- Side Nav Chat-area -->
+        <div id="chatbot-area" class="side-nav">
+          <a href="javascript:void(0)" class="closebutton" onclick="closeChatArea()">&times;</a>
+          <iframe id="annabot-iframe" src="https://tfv-annabot.herokuapp.com/s/chat" frameborder="1" width="90%" height="90%"></iframe>
+        </div>
+        
+        <!-- Main page content -->
+        <div id="page-content">
 
-          <p>(You can always search our entire catalogue for all areas by searching from the get-go!)</p>
-        </form>
+          <!-- Main Navigation bar for top of page -->
+          <nav id="main-nav-bar" class="nav-bar">
+            <ul>
+              <a href="../index.html"><button>Home</button></a>
+              <a href="../testimonials/testimonials.html"><button>Testimonials</button></a>
+              <a href="../catalogue/catalogue.html"><button class="selected">Catalogue</button></a>
+            </ul>
+          </nav>
 
-        <!-- Restaurant Listing from Database -->
-        <div id="restaurant-listing" class="vertical-">
-          <h3>*Restaurant Listing Here*</h3>
+          <!-- Catalogue filter area -->
+          <section id="filter-section">
+            <br><br>
+            <fieldset>
+              <h2><b>Browse Our Catalogue</b></h2>
+              <hr><br>
+        
+              <form id="filter-catalogue">
+                <label>Choose a location:</label>
+                <select>
+                  <option value="chag">Chaguanas</option>
+                  <option value="pos">Port of Spain</option>
+                  <option value="sanfernando">San Fernando</option>
+                  <option value="siparia">Siparia</option>
+                </select>
+                <br><br>
+                <label>Choose a cuisine/style:</label>
+                <select>
+                  <option value="undecided">Undecided</option>
+                  <option value="thai">Thai</option>
+                  <option value="indian">Indian</option>
+                  <option value="chinese">Chinese</option>
+                </select>
+                <br><br>
+                <label>Choose a rating:</label>
+                <select>
+                  <option value="rating">Any</option> <!-- if the rating does not matter -->
+                  <option value="star1">1</option>
+                  <option value="star2">2</option>
+                  <option value="star3">3</option>
+                  <option value="star4">4</option>
+                  <option value="star5">5</option>
+                </select>
+                <br><br>
+                <input type="submit" class="button" value="Show Me Places!">
+      
+                <p>(You can always search our entire catalogue for all areas by searching from the get-go!)</p>
+              </form>
+            </fieldset>
+    
+            <!-- Restaurant Listing from Database -->
+            <div id="restaurant-listing" class="vertical-">
+              <h3>*Restaurant Listing Here*</h3>
+            </div>
+          </section>
         </div>
 
-      </section>
+      </div>
     </main>
+
+    <!-- Button to Expand Chat-area -->
+    <button id="fixed-button" onclick="openChatArea()">Expand Chat</button>
 
     <!-- Footer -->
     <footer>
@@ -85,7 +101,17 @@
       </p>
     </footer>
 
-    <script src="http://localhost:3000/assets/modules/channel-web/inject.js"></script>
-    <script src="../app.js"></script>
+    <!-- Side nav controls -->
+    <script>
+      function openChatArea() {
+        document.getElementById("chatbot-area").style.width = "390px";
+        document.getElementById("page-content").style.marginLeft = "510px";
+      }
+
+      function closeChatArea() {
+        document.getElementById("chatbot-area").style.width = "0";
+        document.getElementById("page-content").style.marginLeft = "0";
+      }
+    </script>
   </body>
 </html>
