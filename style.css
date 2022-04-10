@@ -59,11 +59,14 @@ a {
   z-index: 1;
 }
 
+.collapsed {
+  display: none;
+}
+
 .side-nav {
   height: 100%;
   width: 0;
   position: fixed;
-  z-index: 1; /* Stay at front of page */
   top: 0;
   left: 0;
   background-color: #111;
@@ -264,8 +267,9 @@ button.selected {
   }
 
   /* disable vertical page scrolling for chat area */
-  #chat-area {
+  #chatbot-area {
     overflow-y: hidden;
+    overflow-x: hidden;
   }
 
   section {

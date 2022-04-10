@@ -7,6 +7,13 @@
     <meta name="description" content="INFO 1601 Project for team Kil-A-Bytes 'The Food Vault'">
     <link rel="stylesheet"   href="../style.css">
     <title>Testimonials</title>
+
+    <!-- Keep side-nav closed on window load -->
+    <script>
+      window.onload = function() {
+        closeChatArea();
+      }
+    </script>
     <style>
       .horizontal-card {
         background-color: white;
@@ -35,9 +42,9 @@
     <main id="app">
       
       <!-- Side Nav Chat-area -->
-      <div id="chatbot-area" class="side-nav">
+      <div id="chatbot-area" class="side-nav collapsed">
         <a href="javascript:void(0)" class="closebutton" onclick="closeChatArea()">&times;</a>
-        <iframe id="annabot-iframe" src="https://tfv-annabot.herokuapp.com/s/chat" frameborder="1" width="90%" height="90%"></iframe>
+        <!-- <iframe id="annabot-iframe" src="https://tfv-annabot.herokuapp.com/s/chat" frameborder="1" width="90%" height="90%"></iframe> -->
       </div>
       
       <!-- Main page content goes here -->
@@ -148,6 +155,7 @@
     <script>
 
       function openChatArea() {
+        document.getElementById("chatbot-area").classList.remove("collapsed");
         document.getElementById("chatbot-area").style.width = "390px";
         document.getElementById("page-content").style.marginLeft = "510px";
       }

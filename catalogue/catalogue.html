@@ -23,9 +23,9 @@
     <main id="app">
 
       <!-- Side Nav Chat-area -->
-      <div id="chatbot-area" class="side-nav">
+      <div id="chatbot-area" class="side-nav collapsed">
         <a href="javascript:void(0)" class="closebutton" onclick="closeChatArea()">&times;</a>
-        <iframe id="annabot-iframe" src="https://tfv-annabot.herokuapp.com/s/chat" frameborder="1" width="90%" height="90%"></iframe>
+        <!-- <iframe id="annabot-iframe" src="https://tfv-annabot.herokuapp.com/s/chat" frameborder="1" width="90%" height="90%"></iframe> -->
       </div>
       
       <!-- Main page content -->
@@ -125,6 +125,7 @@
     <script>
 
       function openChatArea() {
+        document.getElementById("chatbot-area").classList.remove("collapsed");
         document.getElementById("chatbot-area").style.width = "390px";
         document.getElementById("page-content").style.marginLeft = "510px";
       }
