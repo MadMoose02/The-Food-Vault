@@ -27,6 +27,10 @@ h1, h2, h3 {
   text-align: center;
 }
 
+a {
+  text-decoration: none;
+}
+
 #main-nav-bar {
   width: 920px;
   height: 60px;
@@ -72,6 +76,9 @@ h1, h2, h3 {
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+  margin-top: 10px;
+  width: 40px;
+  height: 40px;
 }
 
 .closebutton {
@@ -206,7 +213,7 @@ button.selected {
     bottom: 30px;
     font-size: small;
     width: 80px;
-    position: fixed;
+    position: fixed;;
   }
 
   #page-content {
