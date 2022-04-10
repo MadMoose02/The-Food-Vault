@@ -16,12 +16,6 @@
         margin: 0 auto;
       }
     </style>
-    <script>
-      // Stop auto open chatarea on load
-      window.onload = function() {
-        document.getElementById("chatbot-area").style.display = "none";
-      }
-    </script>
   </head>
   
   <body>
@@ -133,7 +127,6 @@
     <script>
 
       function openChatArea() {
-        document.getElementById("chatbot-area").style.display = "block";
         document.getElementById("chatbot-area").style.width = "390px";
         document.getElementById("page-content").style.marginLeft = "510px";
       }
