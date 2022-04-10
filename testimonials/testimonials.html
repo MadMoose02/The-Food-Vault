@@ -19,11 +19,10 @@
       }
 
       fieldset {
-        width: 96%;
         border-radius: 10px;
+        margin: 0 auto;
         margin-top: 10px;
         border: 1px solid #ccc;
-        padding: 20px;
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
         background: linear-gradient(to bottom, #f2f2f2, #fafafa);
       }
@@ -97,22 +96,23 @@
           <fieldset>
             <section id="add-review" class="horizontal-container">
               <form id="review">
-                  <b><legend>Let Us Know Your Thoughts!</legend></b>
-                  </br>
+                <br><br>
+                <b><legend>Let Us Know Your Thoughts!</legend></b>
+                <br>
 
                   <!-- Name Data field -->
                   <label class="label">Name:</label>
                   <br>
-                  <input type="name" name="Name" style="width: 300px; height: 30px;"">
-                  <br></br>
+                  <input name="Name" style="width: 300px; height: 30px;"">
+                  <br><br>
 
                   <!-- Comment Data field -->
-                  <label for="Testimonial" class="label">Testimonial:</label>
+                  <label class="label">Comment:</label>
                   <br> 
-                  <textarea style="width: 300px; height: 100px;"></textarea>
+                  <textarea name="comment" style="width: 300px; height: 100px;"></textarea>
                   <br><br>
                   
-                  <input type="submit" value="Post Review" />
+                  <input type="button" value="Submit Review">
                   <p>Tip: You can leave the "Name" field blank if you wish to be anonymous.</p>
               </form>
             </fieldset>
@@ -143,6 +143,17 @@
 
     <!-- Side nav controls -->
     <script>
+      let x = window.innerWidth;
+      let y = window.innerHeight;
+      let platform = window.navigator.platform;
+
+      // disable active class of side nav area for mobile after window loads
+      window.onload = function() {
+        if (x < y && platform !== "MacIntel" || platform !== "Win32" || platform !== "Linux x86_64") {
+          document.getElementById("chatbot-area").classList.remove("active");
+        }
+      }
+
       function openChatArea() {
         document.getElementById("chatbot-area").style.width = "390px";
         document.getElementById("page-content").style.marginLeft = "510px";

@@ -7,6 +7,8 @@
     <meta name="description" content="INFO 1601 Project for team Kil-A-Bytes 'The Food Vault'">
     <link rel="stylesheet"   href="style.css">
     <title>The Food Vault</title>
+    <style>
+    </style>
   </head>
 
   <body>
@@ -90,6 +92,17 @@
 
     <!-- Side nav controls -->
     <script>
+      let x = window.innerWidth;
+      let y = window.innerHeight;
+      let platform = window.navigator.platform;
+
+      // disable active class of side nav area for mobile after window loads
+      window.onload = function() {
+        if (x < y && platform !== "MacIntel" || platform !== "Win32" || platform !== "Linux x86_64") {
+          document.getElementById("chatbot-area").classList.remove("active");
+        }
+      }
+
       function openChatArea() {
         document.getElementById("chatbot-area").style.width = "390px";
         document.getElementById("page-content").style.marginLeft = "510px";

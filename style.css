@@ -173,7 +173,7 @@ button.selected {
   }
 
   #page-content {
-    width: 100%;
+    width: 95%;
   }
 
   #main-nav-bar {
@@ -182,8 +182,9 @@ button.selected {
 
   .side-nav {
     width: 100%;
-    /* prevent scrolling */
+    height: 100vh;
     overflow-y: hidden;
+    overflow-x: hidden;
   }
 
   button {
@@ -191,16 +192,27 @@ button.selected {
   }
 
   .vertical-container {
-    width: 100%;
+    width: 90%;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin: 0 auto;
   }
+
   .vertical-card {
-    width: 100%;
+    width: 60%;
   }
+  
   .horizontal-container {
-    width: 100%;
+    width: 90%;
   }
+
   .horizontal-card {
+    width: 90%;
+  }
+
+  #review {
     width: 100%;
   }
 }
