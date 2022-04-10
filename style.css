@@ -26,6 +26,24 @@ h1, h2, h3 {
   text-align: center;
 }
 
+#main-nav-bar {
+  width: 920px;
+  height: 60px;
+  background-color: #333;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 22px;
+  margin-top: 1em;
+  padding: auto;
+  word-spacing: 10px;
+}
+
+.links-container {
+  padding-inline-start: 0;
+}
+
 #fixed-button {
   position: sticky;
   bottom: 20px;
@@ -63,25 +81,12 @@ h1, h2, h3 {
 }
 
 #page-content {
+  max-width: 900px;
   padding: 20px;
   transition: margin-left 0.5s;
+  justify-content: center;
 }
 
-#main-nav-bar {
-  min-width: 520px;
-  max-width: 950px;
-  height: 60px;
-  background-color: #333;
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  border-radius: 22px;
-  margin-top: 1em;
-  padding: auto;
-  word-spacing: 30px;
-}
 
 button {
   cursor: pointer;
@@ -115,36 +120,35 @@ button.selected {
   height: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   flex-wrap: nowrap;
 }
 
 .vertical-card {
-  width: calc(30% - 1rem);
-  min-width: 200px;
-  max-width: 400px;
+  width: 240px;
   height: calc(50% - 1rem);
-  border-radius: 15px;
-  background-color: #fafafa;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 1em;
   margin-bottom: 1rem;
-  padding: 1rem;
+  border-radius: 15px;
+  background-color: #fafafa;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
 .horizontal-container {
-  width: 80vw;
-  max-width: 950px;
+  max-width: 800px;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  text-align: center;
   align-items: center;
   flex-wrap: nowrap;
+  margin: 0 auto;
 }
 
 .horizontal-card {
@@ -152,7 +156,7 @@ button.selected {
   height: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
   border-radius: 10px;
@@ -161,18 +165,27 @@ button.selected {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
-/* form styling for the catalogue area */
-#filter-catalogue {
-  padding: 15px;
-  font-size: 20px;
-  text-align: center;
-}
+@media screen and (max-width: 800px) {
+  /* rescale ui for mobile dimensions */
+  button {
+    font-size: 14px;
+  }
 
-.text{
-  text-align: left;
-  margin-left: 360px;
-}
+  #main-nav-bar {
+    
+  }
 
-#review {
-  padding: 1em;
+  .vertical-container {
+    width: 100%;
+    flex-direction: column;
+  }
+  .vertical-card {
+    width: 100%;
+  }
+  .horizontal-container {
+    width: 100%;
+  }
+  .horizontal-card {
+    width: 100%;
+  }
 }

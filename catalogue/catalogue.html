@@ -7,6 +7,15 @@
     <meta name="description" content="INFO 1601 Project for team Kil-A-Bytes 'The Food Vault'">
     <link rel="stylesheet"   href="../style.css">
     <title>Catalogue</title>
+    <style>
+      fieldset {
+        border: 2px solid; 
+        border-radius: 10px; 
+        background-color: white; 
+        width: 70%;
+        margin: 0 auto;
+      }
+    </style>
   </head>
   
   <body>
@@ -25,7 +34,7 @@
 
           <!-- Main Navigation bar for top of page -->
           <nav id="main-nav-bar" class="nav-bar">
-            <ul>
+            <ul class="links-container">
               <a href="../index.html"><button>Home</button></a>
               <a href="../testimonials/testimonials.html"><button>Testimonials</button></a>
               <a href="../catalogue/catalogue.html"><button class="selected">Catalogue</button></a>
@@ -38,7 +47,7 @@
             <h2><b>Browse Our Catalogue</b></h2>
             <hr><br>
             
-            <fieldset style="border: 2px solid; border-radius: 10px; background-color: white;">
+            <fieldset>
               <form id="filter-catalogue">
                 <label>Choose a cuisine/style:</label>
                 <select id="cuisine-selections">
