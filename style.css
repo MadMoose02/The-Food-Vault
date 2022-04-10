@@ -22,13 +22,14 @@ footer {
 }
 
 h1, h2, h3 {
+  margin: 0 auto;
   margin-bottom: 1rem;
   font-weight: normal;
   text-align: center;
 }
 
 a {
-  text-decoration: none;
+  text-decoration: black;
 }
 
 #main-nav-bar {
@@ -55,6 +56,7 @@ a {
   left: 20px;
   width: 180px;
   font-size: medium;
+  z-index: 1;
 }
 
 .side-nav {
@@ -67,7 +69,8 @@ a {
   background-color: #111;
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px;
-  transition: 0.5s;
+  transition: 0.2s;
+  z-index: 2;
 }
 
 .side-nav .closebutton {
@@ -91,7 +94,7 @@ a {
 #page-content {
   max-width: 900px;
   padding: 20px;
-  transition: margin-left 0.5s;
+  transition: 0.2s;
   justify-content: center;
 }
 
@@ -253,6 +256,11 @@ button.selected {
     height: 96vh;
     overflow-y: hidden;
     overflow-x: hidden;
+  }
+
+  /* toggle for side nav */
+  .side-nav.toggle {
+    width: 0px;
   }
 
   /* disable vertical page scrolling for chat area */

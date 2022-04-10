@@ -12,28 +12,32 @@
   <body>
     <!-- Main View -->
     <main id="app">
-      
-      <!-- Main Navigation bar for top of page -->
-      <nav id="main-nav-bar" class="nav-bar">
-        <ul class="links-container">
-          <a href="./index.html"><button class="selected">Home</button></a>
-          <a href="./testimonials/testimonials.html"><button>Testimonials</button></a>
-          <a href="./catalogue/catalogue.html"><button>Catalogue</button></a>
-        </ul>
-      </nav>
+
       
       <!-- Side Nav Chat-area -->
       <div id="chatbot-area" class="side-nav">
         <a href="javascript:void(0)" class="closebutton" onclick="closeChatArea()">&times;</a>
         <iframe id="annabot-iframe" src="https://tfv-annabot.herokuapp.com/s/chat" frameborder="1" width="90%" height="90%"></iframe>
       </div>
-    
+      
       <!-- Main page content goes here -->
       <div id="page-content">
-        <br><h1><b>Welcome to The Food Vault</b></h2>
+
+        <!-- Main Navigation bar for top of page -->
+        <nav id="main-nav-bar" class="nav-bar">
+          <ul class="links-container">
+            <a href="./index.html"><button class="selected">Home</button></a>
+            <a href="./testimonials/testimonials.html"><button>Testimonials</button></a>
+            <a href="./catalogue/catalogue.html"><button>Catalogue</button></a>
+          </ul>
+        </nav>
+
+        <br><br>
+        <h1><b>Welcome to The Food Vault</b></h1>
+        <br>
+
         <!-- Trending Today section -->
         <section id="trending-today">
-          <br>
           <h2><b>See Which Places Are Trending Today</b></h2>
           <hr><br>
           <div class="vertical-container">
