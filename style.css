@@ -218,6 +218,10 @@ button.selected {
 
   #page-content {
     width: 95%;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 auto;
+    justify-content: center;
   }
 
   #main-nav-bar {
@@ -227,7 +231,7 @@ button.selected {
   }
 
   button {
-    min-width: 65px;
+    min-width: 75px;
     font-size: 12px;
     padding: 0.7em 2em;
     padding-left: 3px;
@@ -244,6 +248,10 @@ button.selected {
   /* disable vertical page scrolling for chat area */
   #chat-area {
     overflow-y: hidden;
+  }
+
+  section {
+    margin: 0 auto;
   }
 
   section > .vertical-container {
