@@ -182,7 +182,6 @@ button.selected {
 
   #fixed-button {
     left: 25px;
-    position: sticky;
   }
 
   #page-content {
@@ -204,7 +203,7 @@ button.selected {
   }
 
   .side-nav {
-    width: 95%;
+    width: 100%;
     height: 96vh;
     overflow-y: hidden;
     overflow-x: hidden;
