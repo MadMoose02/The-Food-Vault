@@ -21,7 +21,15 @@
   <body>
     <!-- Main View -->
     <main id="app">
-      <div>
+
+        <!-- Main Navigation bar for top of page -->
+        <nav id="main-nav-bar" class="nav-bar">
+          <ul class="links-container">
+            <a href="../index.html"><button>Home</button></a>
+            <a href="../testimonials/testimonials.html"><button>Testimonials</button></a>
+            <a href="../catalogue/catalogue.html"><button class="selected">Catalogue</button></a>
+          </ul>
+        </nav>
         
         <!-- Side Nav Chat-area -->
         <div id="chatbot-area" class="side-nav">
@@ -32,27 +40,18 @@
         <!-- Main page content -->
         <div id="page-content">
 
-          <!-- Main Navigation bar for top of page -->
-          <nav id="main-nav-bar" class="nav-bar">
-            <ul class="links-container">
-              <a href="../index.html"><button>Home</button></a>
-              <a href="../testimonials/testimonials.html"><button>Testimonials</button></a>
-              <a href="../catalogue/catalogue.html"><button class="selected">Catalogue</button></a>
-            </ul>
-          </nav>
-
           <!-- Catalogue filter area -->
+          <br><br>
+          <h2><b>Browse Our Catalogue</b></h2>
+          <hr><br>
+          
           <section id="filter-section">
-            <br><br>
-            <h2><b>Browse Our Catalogue</b></h2>
-            <hr><br>
-            
             <fieldset>
               <form id="filter-catalogue">
-
+                <br>
                 <label>Choose a cuisine/style:</label>
                 <br>
-                <select id="cuisine-selections">
+                <select id="cuisine-selections" class="selection-list">
                   <option value="undecided">Any</option>
                   <option value="thai">Thai</option>
                   <option value="indian">Indian</option>
@@ -62,8 +61,8 @@
 
                 <label>Choose a location:</label>
                 <br>
-                <select id="area-selections">
-                  <option value="all">Anywhere</option>
+                <select id="area-selections" class="selection-list">
+                  <option value="all">Any</option>
                   <option value="chag">Chaguanas</option>
                   <option value="pos">Port of Spain</option>
                   <option value="sanfernando">San Fernando</option>
@@ -73,7 +72,7 @@
 
                 <label>Choose a rating:</label>
                 <br>
-                <select id="rating-selections">
+                <select id="rating-selections" class="selection-list">
                   <option value="rating">Any</option> <!-- if the rating does not matter -->
                   <option value="star1">1</option>
                   <option value="star2">2</option>
@@ -95,7 +94,6 @@
           </section>
         </div>
 
-      </div>
     </main>
 
     <!-- Button to Expand Chat-area -->

@@ -20,7 +20,7 @@
 
       fieldset {
         border-radius: 10px;
-        margin: 0 auto;
+        margin: 0;
         margin-top: 10px;
         border: 1px solid #ccc;
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
@@ -33,7 +33,15 @@
     
     <!-- Main View -->
     <main id="app">
-      <div>
+
+        <!-- Main Navigation bar for top of page -->
+        <nav id="main-nav-bar" class="nav-bar">
+          <ul class="links-container">
+            <a href="../index.html"><button>Home</button></a>
+            <a href="../testimonials/testimonials.html"><button class="selected">Testimonials</button></a>
+            <a href="../catalogue/catalogue.html"><button>Catalogue</button></a>
+          </ul>
+        </nav>
 
         <!-- Side Nav Chat-area -->
         <div id="chatbot-area" class="side-nav">
@@ -41,22 +49,12 @@
           <iframe id="annabot-iframe" src="https://tfv-annabot.herokuapp.com/s/chat" frameborder="1" width="90%" height="90%"></iframe>
         </div>
 
-        
         <!-- Main page content goes here -->
-        <div id="page-content">
-          
-          <!-- Main Navigation bar for top of page -->
-          <nav id="main-nav-bar" class="nav-bar">
-            <ul class="links-container">
-              <a href="../index.html"><button>Home</button></a>
-              <a href="../testimonials/testimonials.html"><button class="selected">Testimonials</button></a>
-              <a href="../catalogue/catalogue.html"><button>Catalogue</button></a>
-            </ul>
-          </nav>
+        <div id="page-content" style="margin: 0;">
 
           <!-- Testimonials section -->
           <section id="testimonials">
-            <br><br>
+            <br>
             <h2><b>See What Our Users Have To Say About Us!</b></h2>
             <hr><br>
             <div class="horizontal-container">
@@ -90,10 +88,10 @@
           </section>
 
           <!-- User review section -->
-          <br><br>
-          <h2><b>Have Something To Say About Our Service?</b></h2>
-          <hr><br>
           <section id="add-review" class="horizontal-container">
+            <br><br>
+            <h2><b>Have Something To Say About Our Service?</b></h2>
+            <hr><br>
             <fieldset id="review-form-outline">
               <form id="review">
                 <br><br>
@@ -119,7 +117,6 @@
           </section>
         </div>
 
-      </div>
     </main>
 
     <!-- Button to Expand Chat-area -->
