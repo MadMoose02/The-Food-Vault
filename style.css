@@ -311,4 +311,19 @@ button.selected {
   textarea.data-entry-area {
     height: 100px;
   }
+
+  #restaurant-listing {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  #restaurant-listing > .vertical-container {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #restaurant-listing > .vertical-container > .vertical-card {
+    width: 100%;
+  }
 }

@@ -15,6 +15,7 @@
         width: 70%;
         margin: 0 auto;
       }
+
       #submit-form-button {
         cursor: pointer;
         display: inline-block;
@@ -26,6 +27,14 @@
         padding-left: 9px;
         padding-right: 9px;
         min-width: 60px;
+      }
+
+      #restaurant-listing {
+        flex-wrap: wrap; 
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 0 auto;
+        width: 80%;
       }
     </style>
 
@@ -155,48 +164,50 @@
         </nav>
 
         <!-- Catalogue filter area -->
-          <br><br>
-          <h2><b>Browse Our Catalogue</b></h2>
-          <hr><br>
-          
-          <section id="filter-section">
-            <fieldset>
-              <form id="filter-catalogue">
-                <br>
-                <label>Choose a cuisine/style:</label>
-                <br>
-                <select id="cuisine-selections" class="selection-list">
-                  <option value="all">Any</option>
-                </select>
-                <br><br>
+        <br><br>
+        <h2><b>Browse Our Catalogue</b></h2>
+        <hr><br>
+        
+        <section id="filter-section">
+          <fieldset>
+            <form id="filter-catalogue">
+              <br>
+              <label>Choose a cuisine/style:</label>
+              <br>
+              <select id="cuisine-selections" class="selection-list">
+                <option value="all">Any</option>
+              </select>
+              <br><br>
 
-                <label>Choose a location:</label>
-                <br>
-                <select id="area-selections" class="selection-list">
-                  <option value="all">Any</option>
-                </select>
-                <br><br>
+              <label>Choose a location:</label>
+              <br>
+              <select id="area-selections" class="selection-list">
+                <option value="all">Any</option>
+              </select>
+              <br><br>
 
-                <label>Choose a rating:</label>
-                <br>
-                <select id="rating-selections" class="selection-list">
-                  <option value="all">Any</option>
-                </select>
-                <br><br>
-                <input id="submit-form-button" type="button" value="Show Me Places!" onclick="getRestaurantListing()">
-      
-                <p>(You can always search our entire catalogue for all areas by searching from the get-go!)</p>
-              </form>
-            </fieldset>
+              <label>Choose a rating:</label>
+              <br>
+              <select id="rating-selections" class="selection-list">
+                <option value="all">Any</option>
+              </select>
+              <br><br>
+              <input id="submit-form-button" type="button" value="Show Me Places!" onclick="displayData()">
     
-            <!-- Restaurant Listing from Database -->
-            <div id="restaurant-listing" class="vertical-">
-              <h3>*Restaurant Listing Here*</h3>
-            </div>
-          </section>
+              <p>(You can always search our entire catalogue for all areas by searching from the get-go!)</p>
+            </form>
+          </fieldset>
+        </section>
+
+        <br><br>
+
+        <!-- Restaurant Listing from Database -->
+        <div id="restaurant-listing" class="vertical-container">
+          <!-- <h3>*Restaurant Listing Here*</h3> -->
         </div>
         <br><br><hr>
 
+      </div>
     </main>
 
     <!-- Button to Expand Chat-area -->
@@ -223,9 +234,9 @@
     </footer>
     <br>
 
-    <!-- Side nav controls -->
     <script>
-
+      
+      // Side nav controls
       function openChatArea() {
         document.getElementById("chatbot-area").classList.remove("collapsed");
         document.getElementById("chatbot-area").style.width = "390px";
@@ -237,12 +248,57 @@
         document.getElementById("page-content").style.marginLeft = "0";
       }
 
-      function getRestaurantListing() {
-        var cuisine = document.getElementById("cuisine-selections").value;
-        var area    = document.getElementById("area-selections").value;
-        var rating  = document.getElementById("rating-selections").value;
+      // Contruct GET request
+      async function pullData(table) {
+        let results = {};
+        let response = await fetch(
+          `https://the-food-vault.herokuapp.com/nc/the_food_vault_scbp/api/v1/${table}`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'xc-auth' : auth
+            }
+          }
+        );
+        
+        results = await response.json();
+        return results;
+      }
 
-        console.log(cuisine, area, rating);
+      // Get list of restaurants under a specific cuisine
+      async function getRestaurantList(cuisine) {
+        let results = {};
+      }
+
+      // Populate restaurant-listing area
+      async function displayData() {
+        let container = document.getElementById("restaurant-listing");
+        let cuisine   = document.getElementById("cuisine-selections").value;
+        let area      = document.getElementById("area-selections").value;
+        let rating    = document.getElementById("rating-selections").value;
+
+        if (cuisine == "all") {
+          container.innerHTML = "";
+          let data = await pullData("Cuisines");
+
+          // Check if there are any restaurants listed under each cuisine before adding to the list
+          for (let cuisine of data) {
+            if (cuisine.RestaurantsMMList.length > 0) {
+              console.log(cuisine);
+              let newVerticalCard = document.createElement("div");
+              newVerticalCard.classList.add("vertical-card");
+              // newVerticalCard.onclick = getRestaurantList(cuisine.style);
+              newVerticalCard.style.cursor = "pointer";
+              newVerticalCard.style.justifyContent = "center";
+              newVerticalCard.style.alignItems = "center";
+              newVerticalCard.style.width = "160px";
+              newVerticalCard.style.padding = "20px";
+              newVerticalCard.innerHTML = `<h3 style="margin: 0 auto; padding-top: 15px; padding-bottom: 15px">${cuisine.style}</h3>`;
+              container.appendChild(newVerticalCard);
+            }
+          }
+        }
       }
     </script>
 
