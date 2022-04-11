@@ -1,3 +1,31 @@
+
+// global variables
+let auth = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imtlc2hhbm1vb3NhaUBnbWFpbC5jb20iLCJmaXJzdG5hbWUiOm51bGwsImxhc3RuYW1lIjpudWxsLCJpZCI6MSwicm9sZXMiOiJ1c2VyIiwiaWF0IjoxNjQ5NDc4NTA4fQ.niRMnlB_nSOMK0DeHuutpxwCwgvyvrGjzXewdytAwAI';
+let cuisines = {};
+let areas = {};
+let restaurants = {};
+let displayContainer = document.getElementById("restaurant-listing");
+
+// GET for hosted NocoDB database
+async function pullData(table) {
+  let results = {};
+  let response = await fetch(
+    `https://the-food-vault.herokuapp.com/nc/the_food_vault_scbp/api/v1/${table}?limit=100`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'xc-auth' : auth
+      }
+    }
+  );
+  results = await response.json();
+  return results;
+}
+
+// get data after page finishes loading
+document.readyState === 'complete' ? populateObjects() : window.addEventListener('load', populateObjects);
+
 // Restaurant Listing Area - referenced by many other functions, do not edit
 restaurantsDisplayContainer = document.getElementById('restaurant-listing');
 
