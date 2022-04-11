@@ -209,43 +209,21 @@ button.selected {
   border: 1px solid #888;
   height: 90vh;
   width: 80%; /* Could be more or less, depending on screen size */
+  border-radius: 15px;
 }
 
 /* The Close Button */
-.modla-close-btn {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
+.modal-close-btn {
+  height: 30px;
+  padding: 5px;
+  font-size: 20px;
   font-weight: bold;
 }
 
-.modla-close-btn:hover, .modla-close-btn:focus {
+.modal-close-btn:hover, .modal-close-btn:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
-}
-
-.fade {
-  display: "block";
-  opacity: 1;
-  top: "50%";
-  left: "50%";
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  background-color: rgba(0,0,0,0.5);
-  position: "fixed";
-  width: "100%";
-  height: "100%";
-  overflow: "auto";
-  -webkit-overflow-scrolling: "touch";
-}
-
-.in {
-  opacity: 1;
-}
-
-.out {
-  opacity: 0;
 }
 
 .selection-list {
@@ -387,11 +365,11 @@ button.selected {
   }
 
   #restaurant-listing > .vertical-card {
-    width: 70%;
+    width: 100%;
   }
 
   .restaurant-card {
-    width: 90%;
+    width: 100%;
   }
 
   #restaurant-name {
@@ -402,6 +380,21 @@ button.selected {
     font-size: 12px;
   }
 
-  #map-container {
+  #modal-window-body {
     height: fit-content;
+  }
+
+  #modal-window-body > h3 {
+    font-size: 15px;
+  }
+
+  #modal-window-map-container {
+    height: 40vh;
+    margin-bottom: 30px;
+  }
+
+  #modal-window-map-container > iframe {
+    height: 100%;
+    width: 100%;
+  }
 }

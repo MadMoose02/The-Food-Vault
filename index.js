@@ -1,21 +1,5 @@
 // Restaurant Listing Area - referenced by many other functions, do not edit
-displayContainer = document.getElementById('restaurant-listing');
-
-// Close modal, if open, when user clicks outside of it
-window.onclick = function(event) {
-    let modal = document.getElementById("restaurant-modal-container");
-    if (event.target == modal) {
-
-        // Close the modal
-        modal.style.display = "none";
-
-        // Reset body scrolling
-        document.body.style.overflow = "auto";
-
-        // Reset the restaurant modal
-        modal.innerHTML = "";
-    }
-}
+restaurantsDisplayContainer = document.getElementById('restaurant-listing');
 
 // Function to scroll to top of page
 function scrollToTop() {
@@ -47,6 +31,16 @@ function formatPhoneNumber(phoneNumberString) {
     return null;
 }
 
+function closeRestaurantModal(modalElement) {
+    modalElement.style.display = "none";
+
+    // Reset body scrolling
+    document.body.style.overflow = "auto";
+
+    // Reset modal content
+    modalElement.innerHTML = "";
+}
+
 // Create modal and its body
 function createRestaurantModal(restaurant) {
 
@@ -56,21 +50,21 @@ function createRestaurantModal(restaurant) {
     // Create modal content view area
     let modalContent = document.createElement('div');
     modalContent.classList.add('modal-content', 'horizontal-container');
-    modalContent.style.marginTop = "15px";
+    modalContent.style.marginTop = "25px";
 
     // Populate modal content view area
     let modalContentHeader = document.createElement('h2');
+    modalContentHeader.setAttribute("id", "modal-window-heading");
     modalContentHeader.innerHTML = `
         <b>${restaurant.name}</b>
     `;
     modalContent.appendChild(modalContentHeader);
 
     let modalContentBody = document.createElement('div');
+    modalContentBody.setAttribute("id", "modal-window-body");
     modalContentBody.innerHTML = `
-        <div class="vertical-container" style="width: fit-content; height: min-content;">
-            <h3>Dine In: ${restaurant.dine_in ? "Yes" : "No"}</h3>
-            <h3>Take Out: ${restaurant.take_out ? "Yes" : "No"}</h3>
-        </div>
+        <h3>Dine In: ${restaurant.dine_in ? "Yes" : "No"}</h3>
+        <h3>Take Out: ${restaurant.take_out ? "Yes" : "No"}</h3>
         <h3>Rating: ${restaurant.rating}</h3>
         <h3>Address: ${restaurant.address}</h3>
         <h3>Phone: ${formatPhoneNumber(restaurant.contact)}</h3>
@@ -81,16 +75,26 @@ function createRestaurantModal(restaurant) {
 
     // Create map view area
     let mapContainer = document.createElement('div');
-    mapContainer.setAttribute("id", "map-container");
+    mapContainer.setAttribute("id", "modal-window-map-container");
     mapContainer.style.justifyContent = "center";
     mapContainer.style.alignItems = "center";
+    mapContainer.style.border = "2.5px solid #ccc";
+    mapContainer.style.margin = "0 auto";
     mapContainer.innerHTML = restaurant.google_maps;
     modalContent.appendChild(mapContainer);
+    
+    // Add button to close modal
+    let closeButton = document.createElement("button");
+    closeButton.setAttribute("id", "modal-close-button");
+    closeButton.setAttribute("onclick", `closeRestaurantModal(this.parentElement.parentElement)`);
+    closeButton.classList.add("modal-close-btn");
+    closeButton.style.marginTop = "15px";
+    closeButton.innerHTML = "&times;";
+    modalContent.appendChild(closeButton);
 
     // Add modal content to modal
     modal.appendChild(modalContent);
-    modal.style.height = "fit-content";
-
+    
     return modal;
 }
 
@@ -116,11 +120,7 @@ function createRestaurantCardItem(restaurant) {
     card.style.boxShadow = "0px 0px 10px #888888";
     card.style.justifyContent = "center";
     card.style.alignItems = "center";
-    card.onclick = function() {
-        // displayRestaurant(restaurants[i].id);
-        console.log('Displaying restaurant ' + restaurant.id);
-        displayRestaurantPopup(restaurant);
-    }
+    card.onclick = function() { displayRestaurantPopup(restaurant); };
 
     // add a vertical container to card
     let vertical_container = document.createElement("div");
@@ -182,7 +182,6 @@ function createRestaurantCardItem(restaurant) {
 function displayRestaurantList(cuisine_id, area_id, rating) {
     let cuisine_style = '';
     let area_name = '';
-    console.log(`C: ${cuisine_id} A: ${area_id} R: ${rating}`);
 
     // get name of cuisine
     for (let i = 0; i < cuisines.length; i++) {
@@ -198,7 +197,7 @@ function displayRestaurantList(cuisine_id, area_id, rating) {
         }
     }
 
-    // Add heading to displayContainer
+    // Add heading to restaurantsDisplayContainer
     let heading;
     if (cuisine_id !== 'all' && area_id === 'all' && rating === 'all') {
         heading = `${cuisine_style} Restaurants`;
@@ -223,7 +222,7 @@ function displayRestaurantList(cuisine_id, area_id, rating) {
         <br>
         </div>
     `;
-    displayContainer.innerHTML = headingHTML;
+    restaurantsDisplayContainer.innerHTML = headingHTML;
 
     let list = [];
 
@@ -263,10 +262,10 @@ function displayRestaurantList(cuisine_id, area_id, rating) {
         }
     }
 
-    // Append restaurants to displayContainer if there are any, otherwise display message
+    // Append restaurants to restaurantsDisplayContainer if there are any, otherwise display message
     if (list.length > 0) {
         for (let i = 0; i < list.length; i++) {
-        displayContainer.appendChild(list[i]);
+        restaurantsDisplayContainer.appendChild(list[i]);
         }
 
         // Create a div and append after the list
@@ -282,9 +281,9 @@ function displayRestaurantList(cuisine_id, area_id, rating) {
         button.setAttribute("onclick", "scrollToTop()");
         button.innerHTML = "Go Back Up";
 
-        // Append button to div and append div to displayContainer
+        // Append button to div and append div to restaurantsDisplayContainer
         div.appendChild(button);
-        displayContainer.appendChild(div);
+        restaurantsDisplayContainer.appendChild(div);
 
     } else {
         let message = `
@@ -294,7 +293,7 @@ function displayRestaurantList(cuisine_id, area_id, rating) {
         </div>
         <br><hr>
         `;
-        displayContainer.innerHTML = message;
+        restaurantsDisplayContainer.innerHTML = message;
     }
 }
 
@@ -306,7 +305,7 @@ async function displayData() {
 
     // If no filters are selected, display all cuisines to select from
     if (cuisine == "all" && area == "all" && rating == "all") {
-        displayContainer.innerHTML = "";
+        restaurantsDisplayContainer.innerHTML = "";
 
         // Check if there are any restaurants listed under each cuisine before adding to the list
         for (let each of cuisines) {
@@ -315,7 +314,7 @@ async function displayData() {
                 newVerticalCard.classList.add("vertical-card");
                 newVerticalCard.setAttribute("onclick", `displayRestaurantList(${each.id}, 'all', 'all')`);
                 newVerticalCard.innerHTML = `<h3 style="margin: 0 auto; padding-top: 15px; padding-bottom: 15px">${each.style}</h3>`;
-                displayContainer.appendChild(newVerticalCard);
+                restaurantsDisplayContainer.appendChild(newVerticalCard);
             }
         }
     }
@@ -323,5 +322,13 @@ async function displayData() {
     // Display restaurants according to filters
     else {
         displayRestaurantList(cuisine, area, rating);
+    }
+}
+
+// Close modal, if open, when user clicks outside of it
+window.onclick = function(event) {
+    let modal = document.getElementById("restaurant-modal-container");
+    if (event.target == modal) {
+        closeModal(modal);
     }
 }
