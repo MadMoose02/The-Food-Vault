@@ -4,7 +4,6 @@ body {
 }
 
 #app {
-  /* width: 100vmax; */
   height: 100%;
   margin: 0 auto;
   text-align: center;
@@ -71,7 +70,7 @@ a {
   top: 0;
   left: 0;
   background-color: #111;
-  overflow-x: hidden; /* Disable horizontal scroll */
+  overflow-x: hidden;
   padding-top: 60px;
   transition: 0.2s;
   z-index: 2;
@@ -187,8 +186,66 @@ button.selected {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
-#filter-catalogue {
-  min-width: 250px;
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  margin-top: 0%;
+  z-index: 4; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: hidden; /* Disable scroll */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  height: 90vh;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.modla-close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.modla-close-btn:hover, .modla-close-btn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.fade {
+  display: "block";
+  opacity: 1;
+  top: "50%";
+  left: "50%";
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background-color: rgba(0,0,0,0.5);
+  position: "fixed";
+  width: "100%";
+  height: "100%";
+  overflow: "auto";
+  -webkit-overflow-scrolling: "touch";
+}
+
+.in {
+  opacity: 1;
+}
+
+.out {
+  opacity: 0;
 }
 
 .selection-list {
@@ -213,7 +270,6 @@ button.selected {
   }
 
   body {
-    /* disable horizontal scrolling */
     width: 100%;
     overflow-x: hidden;
     margin: 0 auto;
@@ -330,7 +386,19 @@ button.selected {
     justify-content: center;
   }
 
-  #restaurant-listing > .vertical-container > .vertical-card {
-    width: 100%;
+  #restaurant-listing > .vertical-card {
+    width: 70%;
+  }
+
+  .restaurant-card {
+    width: 90%;
+  }
+
+  #restaurant-name {
+    font-size: 15px;
+  }
+
+  #details-container > h3 {
+    font-size: 12px;
   }
 }

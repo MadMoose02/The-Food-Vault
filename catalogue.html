@@ -16,6 +16,10 @@
         margin: 0 auto;
       }
 
+      #filter-catalogue {
+        min-width: 250px;
+      }
+
       #submit-form-button {
         cursor: pointer;
         display: inline-block;
@@ -180,15 +184,19 @@
 
         <br><br>
 
+        
         <!-- Restaurant Listing from Database -->
         <div id="restaurant-listing" class="vertical-container"></div>
         <br><br><hr>
+
+        <!-- Modal Container for Pop-ups -->
+        <div id="restaurant-modal-container" class="modal"></div>
 
       </div>
     </main>
 
     <!-- Button to Expand Chat-area -->
-    <button id="fixed-button" onclick="openChatArea()">Expand Chat</button>
+    <button id="fixed-button" onclick="openChatArea()">Expand<br>Chat</button>
 
     <!-- Footer -->
     <footer>
@@ -211,205 +219,6 @@
     </footer>
     <br>
 
-    <script>
-      displayContainer = document.getElementById('restaurant-listing');
-
-      // Side nav controls
-      function openChatArea() {
-        document.getElementById("chatbot-area").classList.remove("collapsed");
-        document.getElementById("chatbot-area").style.width = "390px";
-        document.getElementById("page-content").style.marginLeft = "510px";
-      }
-
-      function closeChatArea() {
-        document.getElementById("chatbot-area").style.width = "0";
-        document.getElementById("page-content").style.marginLeft = "0";
-      }
-
-      // Div-builder for restaurant listing
-      function createRestaurantCardItem(restaurant) {
-        // create card for restaurant
-        let card = document.createElement("div");
-        card.className = "horizontal-card";
-        card.onclick = function() {
-          // displayRestaurant(restaurants[i].id);
-          console.log('Displaying restaurant ' + restaurant.id);
-        }
-
-        // add a vertical container to card
-        let vertical_container = document.createElement("div");
-        vertical_container.className = "vertical-container";
-
-        // create card header
-        let card_header = document.createElement("h2")
-        card_header.setAttribute("id", "restaurant-name");
-        card_header.className = "vertical-card";
-        card_header.innerHTML = restaurant.name;
-        vertical_container.appendChild(card_header);
-
-        // add an inner horizontal container to vertical container
-        let inner_horizontal_container = document.createElement("div");
-        inner_horizontal_container.className = "horizontal-container";
-
-        // create card body
-        let card_body_1 = document.createElement("h3")
-        card_body_1.setAttribute("id", "dine-in");
-        card_body_1.innerHTML = `Dine In: ${restaurant.dine_in ? "Yes" : "No"}`;
-        inner_horizontal_container.appendChild(card_body_1);
-
-        let card_body_2 = document.createElement("h3")
-        card_body_2.setAttribute("id", "take-out");
-        card_body_2.innerHTML = `Take Out: ${restaurant.take_out ? "Yes" : "No"}`;
-        inner_horizontal_container.appendChild(card_body_2);
-
-        // add inner horizontal container to vertical container
-        vertical_container.appendChild(inner_horizontal_container);
-
-        // add vertical container to card
-        card.appendChild(vertical_container);
-
-        return card;
-      }
-
-      // Display restaurants for given cuisine
-      function displayRestaurantList(cuisine_id, area_id, rating) {
-        let cuisine_style = '';
-        let area_name = '';
-        console.log(`C: ${cuisine_id} A: ${area_id} R: ${rating}`);
-
-        // get name of cuisine
-        for (let i = 0; i < cuisines.length; i++) {
-          if (cuisines[i].id === Number(cuisine_id)) {
-            cuisine_style = cuisines[i].style;
-          }
-        }
-
-        // get name of area
-        for (let i = 0; i < areas.length; i++) {
-          if (areas[i].id === Number(area_id)) {
-            area_name = areas[i].name;
-          }
-        }
-        
-        // Add heading to displayContainer
-        let heading;
-        if (cuisine_id !== 'all' && area_id === 'all' && rating === 'all') {
-          heading = `${cuisine_style} Restaurants`;
-        } else if (cuisine_id === 'all' && area_id !== 'all' && rating === 'all') {
-          heading = `Restaurants in ${area_name}`;
-        } else if (cuisine_id === 'all' && area_id === 'all' && rating !== 'all') {
-          heading = `${rating} Star Restaurants`;
-        } else if (cuisine_id !== 'all' && area_id !== 'all' && rating === 'all') {
-          heading = `${cuisine_style} Restaurants in ${area_name}`;
-        } else if (cuisine_id !== 'all' && area_id === 'all' && rating !== 'all') {
-          heading = `${rating} Star ${cuisine_style} Restaurants`;
-        } else if (cuisine_id === 'all' && area_id !== 'all' && rating !== 'all') {
-          heading = `${rating} Star Restaurants in ${area_name}`;
-        } else if (cuisine_id !== 'all' && area_id !== 'all' && rating !== 'all') {
-          heading = `${rating} Star ${cuisine_style} Restaurants in ${area_name}`;
-        }
-
-        let headingHTML = `
-          <br>
-          <div class="vertical-container" style="width: 100%">
-            <h2 style="margin: 0 auto; padding-top: 15px; padding-bottom: 15px"><b>${heading}</b></h2>
-          </div>
-          <br><hr>
-        `;
-        displayContainer.innerHTML = headingHTML;
-
-        let list = [];
-
-        // Display all restaurants for cuisine
-        for (let i = 0; i < restaurants.length; i++) {
-          
-          // ensure cuisine matches
-          if (restaurants[i].CuisinesMMList[0].id == cuisine_id || cuisine_id === 'all') {
-
-            // check all filters
-            if (area_id === 'all' && rating === 'all') {
-              console.log('Displaying all ' + restaurants[i].CuisinesMMList[0].style + ' restaurants');
-              list.push(createRestaurantCardItem(restaurants[i]));
-            }
-            
-            else if (area_id !== 'all' && rating === 'all') {
-              if (restaurants[i].AreasMMList[0].id == area_id) {
-                console.log('Displaying restaurants in ' + area_name);
-                list.push(createRestaurantCardItem(restaurants[i]));
-              }
-            }
-            
-            else if (area_id === 'all' && rating !== 'all') {
-              let rating_val = restaurants[i].rating;
-              if (rating_val >= Number(rating) && rating_val < Number(rating) + 1) {
-                console.log('Displaying restaurants with ' + rating + ' star rating');
-                list.push(createRestaurantCardItem(restaurants[i]));
-              }
-            }
-
-            else if (area_id !== 'all' && rating !== 'all') {
-              if (restaurants[i].AreasMMList[0].id == area_id && restaurants[i].rating >= Number(rating) && restaurants[i].rating < Number(rating) + 1) {
-                console.log('Displaying restaurants in ' + area_name + ' with ' + rating + ' star rating');
-                list.push(createRestaurantCardItem(restaurants[i]));
-              }
-            }
-          }
-        }
-
-        // Append restaurants to displayContainer if there are any, otherwise display message
-        if (list.length > 0) {
-          for (let i = 0; i < list.length; i++) {
-            displayContainer.appendChild(list[i]);
-          }
-        } else {
-          let message = `
-            <br>
-            <div class="vertical-container" style="width: 100%">
-              <h2 style="margin: 0 auto; padding-top: 15px; padding-bottom: 15px"><b>No Restaurants Found</b></h2>
-            </div>
-            <br><hr>
-          `;
-          displayContainer.innerHTML = message;
-        }
-
-        // Add a button inside a div to displayContainer to return to top of page
-        let returnToTopButton = document.createElement("button");
-        returnToTopButton.setAttribute("id", "return-to-top");
-        returnToTopButton.innerHTML = "Back to Top";
-        displayContainer.appendChild(returnToTopButton);
-        returnToTopButton.addEventListener("click", function() {
-          window.scrollTo(0, 0);
-        });
-      }
-
-      // Populate restaurant-listing area
-      async function displayData() {
-        let cuisine   = document.getElementById("cuisine-selections").value;
-        let area      = document.getElementById("area-selections").value;
-        let rating    = document.getElementById("rating-selections").value;
-
-        // If no filters are selected, display all cuisines to select from
-        if (cuisine == "all" && area == "all" && rating == "all") {
-          displayContainer.innerHTML = "";
-
-          // Check if there are any restaurants listed under each cuisine before adding to the list
-          for (let each of cuisines) {
-            if (each.RestaurantsMMList.length > 0) {
-              let newVerticalCard = document.createElement("div");
-              newVerticalCard.classList.add("vertical-card");
-              newVerticalCard.setAttribute("onclick", `displayRestaurantList(${each.id}, 'all', 'all')`);
-              newVerticalCard.innerHTML = `<h3 style="margin: 0 auto; padding-top: 15px; padding-bottom: 15px">${each.style}</h3>`;
-              displayContainer.appendChild(newVerticalCard);
-            }
-          }
-        }
-
-        // Display restaurants according to filters
-        else {
-          displayRestaurantList(cuisine, area, rating);
-        }
-      }
-    </script>
-
+    <script src="index.js"></script>
   </body>
 </html>

@@ -121,7 +121,7 @@
     </main>
 
     <!-- Button to Expand Chat-area -->
-    <button id="fixed-button" onclick="openChatArea()">Expand Chat</button>
+    <button id="fixed-button" onclick="openChatArea()">Expand<br>Chat</button>
   
     <!-- Footer -->
     <footer>
@@ -144,19 +144,6 @@
   </footer>
   <br>
 
-    <!-- Side nav controls -->
-    <script>
-
-      function openChatArea() {
-        document.getElementById("chatbot-area").classList.remove("collapsed");
-        document.getElementById("chatbot-area").style.width = "390px";
-        document.getElementById("page-content").style.marginLeft = "510px";
-      }
-
-      function closeChatArea() {
-        document.getElementById("chatbot-area").style.width = "0";
-        document.getElementById("page-content").style.marginLeft = "0";
-      }
-    </script>
+  <script src="index.js"></script>
   </body>
 </html>
