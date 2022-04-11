@@ -4,9 +4,9 @@ body {
 }
 
 #app {
-  width: 100vmax;
+  /* width: 100vmax; */
   height: 100%;
-  margin: auto;
+  margin: 0 auto;
   text-align: center;
   display: flex;
   flex-direction: column;
