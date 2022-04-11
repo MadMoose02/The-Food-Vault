@@ -401,4 +401,7 @@ button.selected {
   #details-container > h3 {
     font-size: 12px;
   }
+
+  #map-container {
+    height: fit-content;
 }

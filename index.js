@@ -37,6 +37,16 @@ function closeChatArea() {
     document.getElementById("page-content").style.marginLeft = "0";
 }
 
+function formatPhoneNumber(phoneNumberString) {
+    let cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+    let match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
+    if (match) {
+        let intlCode = (match[1] ? '+1 ' : '');
+        return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('');
+    }
+    return null;
+}
+
 // Create modal and its body
 function createRestaurantModal(restaurant) {
 
@@ -46,19 +56,24 @@ function createRestaurantModal(restaurant) {
     // Create modal content view area
     let modalContent = document.createElement('div');
     modalContent.classList.add('modal-content', 'horizontal-container');
+    modalContent.style.marginTop = "15px";
 
     // Populate modal content view area
     let modalContentHeader = document.createElement('h2');
-    modalContentHeader.innerHTML = restaurant.name;
+    modalContentHeader.innerHTML = `
+        <b>${restaurant.name}</b>
+    `;
     modalContent.appendChild(modalContentHeader);
 
     let modalContentBody = document.createElement('div');
     modalContentBody.innerHTML = `
-        <h3>Dine In: ${restaurant.dine_in ? "Yes" : "No"}</h3>
-        <h3>Take Out: ${restaurant.take_out ? "Yes" : "No"}</h3>
+        <div class="vertical-container" style="width: fit-content; height: min-content;">
+            <h3>Dine In: ${restaurant.dine_in ? "Yes" : "No"}</h3>
+            <h3>Take Out: ${restaurant.take_out ? "Yes" : "No"}</h3>
+        </div>
         <h3>Rating: ${restaurant.rating}</h3>
         <h3>Address: ${restaurant.address}</h3>
-        <h3>Phone: ${restaurant.contact}</h3>
+        <h3>Phone: ${formatPhoneNumber(restaurant.contact)}</h3>
         <h3>Website: ${restaurant.website ? restaurant.website : "No Website"}</h3>
         <br>
     `;
@@ -74,6 +89,7 @@ function createRestaurantModal(restaurant) {
 
     // Add modal content to modal
     modal.appendChild(modalContent);
+    modal.style.height = "fit-content";
 
     return modal;
 }
