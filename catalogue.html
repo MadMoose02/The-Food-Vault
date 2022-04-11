@@ -228,7 +228,7 @@
       }
 
       // Div-builder for restaurant listing
-      function addRestaurantCardItem(restaurant) {
+      function createRestaurantCardItem(restaurant) {
         // create card for restaurant
         let card = document.createElement("div");
         card.className = "horizontal-card";
@@ -269,8 +269,7 @@
         // add vertical container to card
         card.appendChild(vertical_container);
 
-        // add card to displayContainer
-        displayContainer.appendChild(card);
+        return card;
       }
 
       // Display restaurants for given cuisine
@@ -320,22 +319,24 @@
         `;
         displayContainer.innerHTML = headingHTML;
 
+        let list = [];
+
         // Display all restaurants for cuisine
         for (let i = 0; i < restaurants.length; i++) {
           
           // ensure cuisine matches
-          if (restaurants[i].CuisinesMMList[0].id == cuisine_id) {
+          if (restaurants[i].CuisinesMMList[0].id == cuisine_id || cuisine_id === 'all') {
 
             // check all filters
             if (area_id === 'all' && rating === 'all') {
               console.log('Displaying all ' + restaurants[i].CuisinesMMList[0].style + ' restaurants');
-              addRestaurantCardItem(restaurants[i]);
+              list.push(createRestaurantCardItem(restaurants[i]));
             }
             
             else if (area_id !== 'all' && rating === 'all') {
-              if (restaurants[i].AreaMMList[0].id == area_id) {
+              if (restaurants[i].AreasMMList[0].id == area_id) {
                 console.log('Displaying restaurants in ' + area_name);
-                addRestaurantCardItem(restaurants[i]);
+                list.push(createRestaurantCardItem(restaurants[i]));
               }
             }
             
@@ -343,16 +344,43 @@
               let rating_val = restaurants[i].rating;
               if (rating_val >= Number(rating) && rating_val < Number(rating) + 1) {
                 console.log('Displaying restaurants with ' + rating + ' star rating');
-                addRestaurantCardItem(restaurants[i]);
+                list.push(createRestaurantCardItem(restaurants[i]));
               }
             }
 
-            else {
-              console.log('Displaying restaurants in ' + area_name + ' with ' + rating + ' star rating');
-              addRestaurantCardItem(restaurants[i]);
+            else if (area_id !== 'all' && rating !== 'all') {
+              if (restaurants[i].AreasMMList[0].id == area_id && restaurants[i].rating >= Number(rating) && restaurants[i].rating < Number(rating) + 1) {
+                console.log('Displaying restaurants in ' + area_name + ' with ' + rating + ' star rating');
+                list.push(createRestaurantCardItem(restaurants[i]));
+              }
             }
           }
         }
+
+        // Append restaurants to displayContainer if there are any, otherwise display message
+        if (list.length > 0) {
+          for (let i = 0; i < list.length; i++) {
+            displayContainer.appendChild(list[i]);
+          }
+        } else {
+          let message = `
+            <br>
+            <div class="vertical-container" style="width: 100%">
+              <h2 style="margin: 0 auto; padding-top: 15px; padding-bottom: 15px"><b>No Restaurants Found</b></h2>
+            </div>
+            <br><hr>
+          `;
+          displayContainer.innerHTML = message;
+        }
+
+        // Add a button inside a div to displayContainer to return to top of page
+        let returnToTopButton = document.createElement("button");
+        returnToTopButton.setAttribute("id", "return-to-top");
+        returnToTopButton.innerHTML = "Back to Top";
+        displayContainer.appendChild(returnToTopButton);
+        returnToTopButton.addEventListener("click", function() {
+          window.scrollTo(0, 0);
+        });
       }
 
       // Populate restaurant-listing area
@@ -360,7 +388,6 @@
         let cuisine   = document.getElementById("cuisine-selections").value;
         let area      = document.getElementById("area-selections").value;
         let rating    = document.getElementById("rating-selections").value;
-        console.log(`C: ${cuisine} A: ${area} R: ${rating}`);
 
         // If no filters are selected, display all cuisines to select from
         if (cuisine == "all" && area == "all" && rating == "all") {
