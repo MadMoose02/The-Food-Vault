@@ -9,13 +9,14 @@ function scrollToTop() {
     document.documentElement.scrollTop = 0;
 }
 
-// Side nav controls
+// Open Side nav bar
 function openChatArea() {
     document.getElementById("chatbot-area").classList.remove("collapsed");
     document.getElementById("chatbot-area").style.width = "390px";
     document.getElementById("page-content").style.marginLeft = "510px";
 }
 
+// Close side nav bar
 function closeChatArea() {
     document.getElementById("chatbot-area").style.width = "0";
     document.getElementById("page-content").style.marginLeft = "0";
