@@ -141,6 +141,7 @@ button.selected {
 }
 
 .vertical-card {
+  cursor: pointer;
   width: 240px;
   height: calc(50% - 1rem);
   display: flex;
@@ -152,6 +153,12 @@ button.selected {
   border-radius: 15px;
   background-color: #fafafa;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* when hovered over */
+.vertical-card:hover {
+  background-color: #fafafadb;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
 }
 
 .horizontal-container {

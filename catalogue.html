@@ -36,16 +36,26 @@
         margin: 0 auto;
         width: 80%;
       }
+
+      .vertical-card {
+        width: "160px";
+        padding: "20px";
+      }
     </style>
 
     <script>
-      // On page load, initialise all selection options
-      window.onload = function() {
-        auth = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imtlc2hhbm1vb3NhaUBnbWFpbC5jb20iLCJmaXJzdG5hbWUiOm51bGwsImxhc3RuYW1lIjpudWxsLCJpZCI6MSwicm9sZXMiOiJ1c2VyIiwiaWF0IjoxNjQ5NDc4NTA4fQ.niRMnlB_nSOMK0DeHuutpxwCwgvyvrGjzXewdytAwAI';
-        
-        // Initialise all areas
-        let response = fetch(
-          'http://the-food-vault.herokuapp.com/nc/the_food_vault_scbp/api/v1/Areas?fields=name&sort=name',
+      // global variables
+      let auth = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imtlc2hhbm1vb3NhaUBnbWFpbC5jb20iLCJmaXJzdG5hbWUiOm51bGwsImxhc3RuYW1lIjpudWxsLCJpZCI6MSwicm9sZXMiOiJ1c2VyIiwiaWF0IjoxNjQ5NDc4NTA4fQ.niRMnlB_nSOMK0DeHuutpxwCwgvyvrGjzXewdytAwAI';
+      let cuisines = {};
+      let areas = {};
+      let restaurants = {};
+      let displayContainer = document.getElementById("restaurant-listing");
+
+      // GET for hosted NocoDB database
+      async function pullData(table) {
+        let results = {};
+        let response = await fetch(
+          `https://the-food-vault.herokuapp.com/nc/the_food_vault_scbp/api/v1/${table}?limit=100`,
           {
             headers: {
               'Content-Type': 'application/json',
@@ -53,91 +63,61 @@
               'xc-auth' : auth
             }
           }
-        ).then(function(response) {
-          // Parse the response as JSON
-          return response.json();
-        }).then(function(json) {
-          // Loop through the JSON and add the areas to the selection list
-          for (let area of json) {
-            // Create new option
-            let option    = document.createElement('option');
-            option.value  = area.id;
-            option.text   = area.name;
+        );
+        results = await response.json();
+        return results;
+      }
 
-            // Add the option to the selection list
-            document.getElementById('area-selections').appendChild(option);
-          }
-        }).catch(function(error) {
-          console.log(error);
-        });
+      // populate objects
+      async function populateObjects() {
+        cuisines = await pullData('Cuisines');
+        areas = await pullData('Areas');
+        restaurants = await pullData('Restaurants');
 
-        // Initialise all cuisines
-        response = fetch(
-          // URL to fetch
-          'https://the-food-vault.herokuapp.com/nc/the_food_vault_scbp/api/v1/Cuisines?fields=style&sort=style',
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json',
-              'xc-auth' : auth
-            }
-          }
-        ).then(function(response) {
-          // Parse the response as JSON
-          return response.json();
-        }).then(function(json) {
-          // Loop through the JSON and add the cuisines to the selection list
-          for (let cuisine of json) {
-            // Create new option
-            let option    = document.createElement('option');
-            option.value  = cuisine.id;
-            option.text   = cuisine.style;
+        // Loop through the JSON and add the areas to the selection list
+        for (let area of areas) {
+          // Create new option
+          let option    = document.createElement('option');
+          option.value  = area.id;
+          option.text   = area.name;
 
-            // Add the option to the selection list
-            document.getElementById('cuisine-selections').appendChild(option);
-          }
-        }).catch(function(error) {
-          console.log(error);
-        });
+          // Add the option to the selection list
+          document.getElementById('area-selections').appendChild(option);
+        }
+
+        // Loop through the JSON and add the cuisines to the selection list
+        for (let cuisine of cuisines) {
+          // Create new option
+          let option    = document.createElement('option');
+          option.value  = cuisine.id;
+          option.text   = cuisine.style;
+
+          // Add the option to the selection list
+          document.getElementById('cuisine-selections').appendChild(option);
+        }
 
         // Initialise all ratings
         let ratings = [];
-        response = fetch(
-          // URL to fetch
-          'https://the-food-vault.herokuapp.com/nc/the_food_vault_scbp/api/v1/Restaurants/groupby?column_name=rating&sort=rating',
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json',
-              'xc-auth' : auth
-            }
+        for (let i = 0; i < restaurants.length; i++) {
+          // Check if the rating is already in the list
+          let curr_rating = restaurants[i].rating[0];
+          if (!ratings.includes(curr_rating)) {
+            // Create new option
+            let option    = document.createElement('option');
+            option.value  = curr_rating;
+            option.text   = curr_rating;
+
+            // Add the option to the selection list
+            document.getElementById('rating-selections').appendChild(option);
+
+            // Add the rating to the list
+            ratings.push(curr_rating);
           }
-        ).then(function(response) {
-          // Parse the response as JSON
-          return response.json();
-        }).then(function(json) {
-          // Loop through the JSON and add the ratings to the selection list
-          for (let rating of json) {
-            // Check if the rating is already in the list
-            let curr_rating = rating.rating[0];
-            if (!ratings.includes(curr_rating)) {
-              // Create new option
-              let option    = document.createElement('option');
-              option.value  = curr_rating + '-star';
-              option.text   = curr_rating;
-
-              // Add the option to the selection list
-              document.getElementById('rating-selections').appendChild(option);
-
-              // Add the rating to the list
-              ratings.push(curr_rating);
-            }
-          }
-        }).catch(function(error) {
-          console.log(error);
-        });
-
+        }
       }
+      
+      // get data after page finishes loading
+      document.readyState === 'complete' ? populateObjects() : window.addEventListener('load', populateObjects);
     </script>
   </head>
   
@@ -202,9 +182,7 @@
         <br><br>
 
         <!-- Restaurant Listing from Database -->
-        <div id="restaurant-listing" class="vertical-container">
-          <!-- <h3>*Restaurant Listing Here*</h3> -->
-        </div>
+        <div id="restaurant-listing" class="vertical-container"></div>
         <br><br><hr>
 
       </div>
@@ -235,7 +213,8 @@
     <br>
 
     <script>
-      
+      displayContainer = document.getElementById('restaurant-listing');
+
       // Side nav controls
       function openChatArea() {
         document.getElementById("chatbot-area").classList.remove("collapsed");
@@ -248,56 +227,160 @@
         document.getElementById("page-content").style.marginLeft = "0";
       }
 
-      // Contruct GET request
-      async function pullData(table) {
-        let results = {};
-        let response = await fetch(
-          `https://the-food-vault.herokuapp.com/nc/the_food_vault_scbp/api/v1/${table}`,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json',
-              'xc-auth' : auth
-            }
-          }
-        );
-        
-        results = await response.json();
-        return results;
+      // Div-builder for restaurant listing
+      function addRestaurantCardItem(restaurant) {
+        // create card for restaurant
+        let card = document.createElement("div");
+        card.className = "horizontal-card";
+        card.onclick = function() {
+          // displayRestaurant(restaurants[i].id);
+          console.log('Displaying restaurant ' + restaurant.id);
+        }
+
+        // add a vertical container to card
+        let vertical_container = document.createElement("div");
+        vertical_container.className = "vertical-container";
+
+        // create card header
+        let card_header = document.createElement("h2")
+        card_header.setAttribute("id", "restaurant-name");
+        card_header.className = "vertical-card";
+        card_header.innerHTML = restaurant.name;
+        vertical_container.appendChild(card_header);
+
+        // add an inner horizontal container to vertical container
+        let inner_horizontal_container = document.createElement("div");
+        inner_horizontal_container.className = "horizontal-container";
+
+        // create card body
+        let card_body_1 = document.createElement("h3")
+        card_body_1.setAttribute("id", "dine-in");
+        card_body_1.innerHTML = `Dine In: ${restaurant.dine_in ? "Yes" : "No"}`;
+        inner_horizontal_container.appendChild(card_body_1);
+
+        let card_body_2 = document.createElement("h3")
+        card_body_2.setAttribute("id", "take-out");
+        card_body_2.innerHTML = `Take Out: ${restaurant.take_out ? "Yes" : "No"}`;
+        inner_horizontal_container.appendChild(card_body_2);
+
+        // add inner horizontal container to vertical container
+        vertical_container.appendChild(inner_horizontal_container);
+
+        // add vertical container to card
+        card.appendChild(vertical_container);
+
+        // add card to displayContainer
+        displayContainer.appendChild(card);
       }
 
-      // Get list of restaurants under a specific cuisine
-      async function getRestaurantList(cuisine) {
-        let results = {};
+      // Display restaurants for given cuisine
+      function displayRestaurantList(cuisine_id, area_id, rating) {
+        let cuisine_style = '';
+        let area_name = '';
+        console.log(`C: ${cuisine_id} A: ${area_id} R: ${rating}`);
+
+        // get name of cuisine
+        for (let i = 0; i < cuisines.length; i++) {
+          if (cuisines[i].id === Number(cuisine_id)) {
+            cuisine_style = cuisines[i].style;
+          }
+        }
+
+        // get name of area
+        for (let i = 0; i < areas.length; i++) {
+          if (areas[i].id === Number(area_id)) {
+            area_name = areas[i].name;
+          }
+        }
+        
+        // Add heading to displayContainer
+        let heading;
+        if (cuisine_id !== 'all' && area_id === 'all' && rating === 'all') {
+          heading = `${cuisine_style} Restaurants`;
+        } else if (cuisine_id === 'all' && area_id !== 'all' && rating === 'all') {
+          heading = `Restaurants in ${area_name}`;
+        } else if (cuisine_id === 'all' && area_id === 'all' && rating !== 'all') {
+          heading = `${rating} Star Restaurants`;
+        } else if (cuisine_id !== 'all' && area_id !== 'all' && rating === 'all') {
+          heading = `${cuisine_style} Restaurants in ${area_name}`;
+        } else if (cuisine_id !== 'all' && area_id === 'all' && rating !== 'all') {
+          heading = `${rating} Star ${cuisine_style} Restaurants`;
+        } else if (cuisine_id === 'all' && area_id !== 'all' && rating !== 'all') {
+          heading = `${rating} Star Restaurants in ${area_name}`;
+        } else if (cuisine_id !== 'all' && area_id !== 'all' && rating !== 'all') {
+          heading = `${rating} Star ${cuisine_style} Restaurants in ${area_name}`;
+        }
+
+        let headingHTML = `
+          <br>
+          <div class="vertical-container" style="width: 100%">
+            <h2 style="margin: 0 auto; padding-top: 15px; padding-bottom: 15px"><b>${heading}</b></h2>
+          </div>
+          <br><hr>
+        `;
+        displayContainer.innerHTML = headingHTML;
+
+        // Display all restaurants for cuisine
+        for (let i = 0; i < restaurants.length; i++) {
+          
+          // ensure cuisine matches
+          if (restaurants[i].CuisinesMMList[0].id == cuisine_id) {
+
+            // check all filters
+            if (area_id === 'all' && rating === 'all') {
+              console.log('Displaying all ' + restaurants[i].CuisinesMMList[0].style + ' restaurants');
+              addRestaurantCardItem(restaurants[i]);
+            }
+            
+            else if (area_id !== 'all' && rating === 'all') {
+              if (restaurants[i].AreaMMList[0].id == area_id) {
+                console.log('Displaying restaurants in ' + area_name);
+                addRestaurantCardItem(restaurants[i]);
+              }
+            }
+            
+            else if (area_id === 'all' && rating !== 'all') {
+              let rating_val = restaurants[i].rating;
+              if (rating_val >= Number(rating) && rating_val < Number(rating) + 1) {
+                console.log('Displaying restaurants with ' + rating + ' star rating');
+                addRestaurantCardItem(restaurants[i]);
+              }
+            }
+
+            else {
+              console.log('Displaying restaurants in ' + area_name + ' with ' + rating + ' star rating');
+              addRestaurantCardItem(restaurants[i]);
+            }
+          }
+        }
       }
 
       // Populate restaurant-listing area
       async function displayData() {
-        let container = document.getElementById("restaurant-listing");
         let cuisine   = document.getElementById("cuisine-selections").value;
         let area      = document.getElementById("area-selections").value;
         let rating    = document.getElementById("rating-selections").value;
+        console.log(`C: ${cuisine} A: ${area} R: ${rating}`);
 
-        if (cuisine == "all") {
-          container.innerHTML = "";
-          let data = await pullData("Cuisines");
+        // If no filters are selected, display all cuisines to select from
+        if (cuisine == "all" && area == "all" && rating == "all") {
+          displayContainer.innerHTML = "";
 
           // Check if there are any restaurants listed under each cuisine before adding to the list
-          for (let cuisine of data) {
-            if (cuisine.RestaurantsMMList.length > 0) {
-              console.log(cuisine);
+          for (let each of cuisines) {
+            if (each.RestaurantsMMList.length > 0) {
               let newVerticalCard = document.createElement("div");
               newVerticalCard.classList.add("vertical-card");
-              // newVerticalCard.onclick = getRestaurantList(cuisine.style);
-              newVerticalCard.style.cursor = "pointer";
-              newVerticalCard.style.justifyContent = "center";
-              newVerticalCard.style.alignItems = "center";
-              newVerticalCard.style.width = "160px";
-              newVerticalCard.style.padding = "20px";
-              newVerticalCard.innerHTML = `<h3 style="margin: 0 auto; padding-top: 15px; padding-bottom: 15px">${cuisine.style}</h3>`;
-              container.appendChild(newVerticalCard);
+              newVerticalCard.setAttribute("onclick", `displayRestaurantList(${each.id}, 'all', 'all')`);
+              newVerticalCard.innerHTML = `<h3 style="margin: 0 auto; padding-top: 15px; padding-bottom: 15px">${each.style}</h3>`;
+              displayContainer.appendChild(newVerticalCard);
             }
           }
+        }
+
+        // Display restaurants according to filters
+        else {
+          displayRestaurantList(cuisine, area, rating);
         }
       }
     </script>
