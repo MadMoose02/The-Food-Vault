@@ -216,6 +216,7 @@ button.selected {
   height: 90vh;
   width: 80%; /* Could be more or less, depending on screen size */
   border-radius: 15px;
+  overflow-y: auto;
 }
 
 /* The Close Button */
