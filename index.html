@@ -7,6 +7,30 @@
     <meta name="description" content="INFO 1601 Project for team Kil-A-Bytes 'The Food Vault'">
     <link rel="stylesheet"   href="style.css">
     <title>The Food Vault</title>
+    <style>
+      .vertical-card {
+        height: 350px;
+        background-color: #8caab1;
+      }
+
+      .vertical-card:hover {
+        background-color: #94c0ca;
+      }
+
+      .horizontal-card {
+        height: 160px;
+        width: 100%;
+      }
+
+      .member-name {
+        flex: 6.5;
+      }
+
+      .member-roles {
+        flex: 3.5;
+      }
+
+    </style>
   </head>
 
   <body>
@@ -33,38 +57,68 @@
         </nav>
 
         <br><br>
-        <h1><b>Welcome to The Food Vault</b></h1>
+        <h1><b>Welcome to<br>The Food Vault</b></h1>
         <br>
 
-        <!-- Trending Today section -->
-        <section id="trending-today">
-          <h2><b>See Which Places Are Trending Today</b></h2>
+        <!-- Trending section -->
+        <section id="trending">
+          <h2><b>See Which Places Are Trending</b></h2>
           <hr><br>
-          <div class="vertical-container" style="width: 100%;">
-            <div class="vertical-card">
-              <img src="https://picsum.photos/150" alt="">
-              <h3>Burger</h3>
-              <span>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
-              </span>
-            </div>
-            <div class="vertical-card">
-              <img src="https://picsum.photos/150" alt="">
-              <h3>Burger</h3>
-              <span>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
-              </span>
-            </div>
-            <div class="vertical-card">
-              <img src="https://picsum.photos/150" alt="">
-              <h3>Burger</h3>
-              <span>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
-              </span>
-            </div>
-          </div>
+          <div id="trending-container" class="vertical-container" style="width: 100%;"></div>
           <hr>
         </section>
+
+        <!-- Special Credits -->
+        <section id="credits">
+          <br><br><br>
+          <h2><b>Made With Love By Team Kil-A-Bytes</b></h2>
+          <hr><br>
+
+          <div id="credits-container" class="horizontal-container" style="width: 70%;">
+            <div id="team-member-1" class="horizontal-card">
+              <div class="member-name">
+                <h2>Amelia Seemungal</h2>
+              </div>
+              <div class="member-roles">
+                <h3>UI Design</h3>
+                <h3>Marketing</h3>
+              </div>
+            </div>
+
+            <div id="team-member-2" class="horizontal-card">
+              <div class="member-name">
+                <h2>Keshan Moosai</h2>
+              </div>
+              <div class="member-roles">
+                <h3>UI Design</h3>
+                <h3>JS Implementation</h3>
+              </div>
+            </div>
+
+            <div id="team-member-3" class="horizontal-card">
+              <div class="member-name">
+                <h2>Shaniah Baldeo</h2>
+              </div>
+              <div class="member-roles">
+                <h3>UI Implementation</h3>
+                <h3>Marketing</h3>
+              </div>
+            </div>
+
+            <div id="team-member-4" class="horizontal-card">
+              <div class="member-name">
+                <h2>Ricardo Ramdeen</h2>
+              </div>
+              <div class="member-roles">
+                <h3>UI Implementation</h3>
+                <h3>JS Implementation</h3>
+              </div>
+            </div>
+
+          </div>
+          <br><hr>
+        </section>
+
       </div>
       <br><br><hr>
 
@@ -98,6 +152,12 @@
   <br>
 
   <script src="index.js"></script>
+  <script>
+    // Initialize the trending section after the page loads
+    window.onload = function() {
+      generateTrending();
+    }
+  </script>
   </body>
   
 
