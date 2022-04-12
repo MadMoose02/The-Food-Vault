@@ -168,5 +168,52 @@
   <br>
 
   <script src="index.js"></script>
+  <script>
+    let testimonials = document.getElementById("testimonials-container");
+    let form = document.getElementById("review");
+
+    // Populate the testimonials section with data from the Reviews table of the database
+    async function populateTestimonials() {
+      let reviews = await pullData("Reviews");
+
+      for (let i = 0; i < reviews.length; i++) {  
+        console.log(reviews[i]);
+      }
+    }
+    
+    // Pass data to NocoDB via POST
+    async function addReview(name, comment, rating) {
+      let update = await fetch("http://the-food-vault.herokuapp.com/nc/the_food_vault_scbp/api/v1/Reviews", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "xc-auth" : auth
+        },
+        body: JSON.stringify({
+          "user": name,
+          "comment": comment,
+          "rating": rating
+        })
+      });
+    }
+
+    // Prevent reload on submit
+    function formProcessing(e) {
+      e.preventDefault();
+      var name = form.Name.value;
+      var comment = form.comment.value;
+      var rating = form.rating.value;
+      if (name == "" || comment == "") {
+        alert(`Please fill in all fields`);
+      } else {
+        alert(`Thank you for your review!`);
+        addReview(name, comment, rating);
+      }
+    }
+
+    // Event listeners
+    window.addEventListener("load", populateTestimonials);
+    form.addEventListener("submit", formProcessing);
+  </script>
   </body>
 </html>
