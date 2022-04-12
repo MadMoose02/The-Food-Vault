@@ -23,8 +23,14 @@ async function pullData(table) {
   return results;
 }
 
-// get data after page finishes loading
-document.readyState === 'complete' ? populateObjects() : window.addEventListener('load', populateObjects);
+// Populate data objects
+async function populateObjects() {
+    cuisines    = await pullData('Cuisines');
+    areas       = await pullData('Areas');
+    restaurants = await pullData('Restaurants');
+}
+
+populateObjects();
 
 // Restaurant Listing Area - referenced by many other functions, do not edit
 restaurantsDisplayContainer = document.getElementById('restaurant-listing');
