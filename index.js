@@ -138,6 +138,40 @@ function displayRestaurantPopup(restaurant) {
     document.body.style.overflow = "hidden";
 }
 
+// Generate a random list of restaurants for trending section
+async function generateTrending() {
+    await populateObjects();
+    let trendingList = [];
+
+    // Get number of restaurants in database
+    let numRestaurants = restaurants.length;
+
+    // Generate random number between 0 and number of restaurants, three times
+    // If two numbers are the same, generate another number
+    while (trendingList[0] === trendingList[1] || trendingList[0] === trendingList[2] || trendingList[1] === trendingList[2]) {
+        for (let i = 0; i < 3; i++) {
+            let rand = Math.floor(Math.random() * numRestaurants);
+            trendingList.push(restaurants[rand]);
+        }
+    }
+
+    // Display the random list of restaurants in trending section
+    for (let i = 0; i < trendingList.length; i++) {
+        let trendingRestaurant = document.createElement('div');
+        trendingRestaurant.classList.add('vertical-card');
+        trendingRestaurant.innerHTML = `
+            <h2><b>${trendingList[i].name}</b></h2>
+            <h3>Rating: ${trendingList[i].rating}</h3>
+            <h3>Area: ${trendingList[i].AreasMMList[0].name}</h3>
+        `;
+        trendingRestaurant.setAttribute("id", `trending-restaurant-${i}`);
+        trendingRestaurant.style.cursor = "pointer";
+        trendingRestaurant.onclick = function() { displayRestaurantPopup(trendingList[i]); };
+        document.getElementById("trending-container").appendChild(trendingRestaurant);
+    }
+}
+
+
 // Div-builder for restaurant listing
 function createRestaurantCardItem(restaurant) {
     // create card for restaurant
