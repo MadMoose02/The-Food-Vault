@@ -84,34 +84,7 @@
           <br>
           <h2><b>See What Our Users Have To Say About Us!</b></h2>
           <hr>
-          <div id="testimonials-container" class="horizontal-container">
-            <div class="horizontal-card">
-              <div class="user-name-comment">
-                <h4>Mary Jane</h4>
-                <span>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore
-                </span>
-              </div>
-            </div>
-            <div class="horizontal-card">
-              <div class="user-name-comment">
-                <h4>John Doe</h4>
-                <span>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
-                </span>
-              </div>
-              
-            </div>
-            <div class="horizontal-card">
-              <div class="user-name-comment">
-                <h4>Another Irrelevant Person</h4>
-                <span>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
-                </span>
-              </div>
-              
-            </div>
-          </div>
+          <div id="testimonials-container" class="horizontal-container"></div>
           <br>
         </section>
         
@@ -147,11 +120,11 @@
               <label class="label">How Would You Rate Your Experience With<br><b>The Food Vault</b>?</label>
               <br><br>
               <select name="rating" class="data-entry-area">
-                <option value="1">1 - Unsatisfactory</option>
-                <option value="2">2 - Barely Good</option>
-                <option value="3">3 - Average</option>
-                <option value="4">4 - Satisfactory</option>
                 <option value="5">5 - Excellent</option>
+                <option value="4">4 - Satisfactory</option>
+                <option value="3">3 - Average</option>
+                <option value="2">2 - Barely Good</option>
+                <option value="1">1 - Unsatisfactory</option>
               </select>
               <br><br><br>
                 
@@ -201,8 +174,30 @@
     async function populateTestimonials() {
       let reviews = await pullData("Reviews");
 
-      for (let i = 0; i < reviews.length; i++) {  
-        console.log(reviews[i]);
+      for (let review of reviews) {
+        if (review.rating > 3) {
+          let card = document.createElement("div");
+          card.classList.add("horizontal-card");
+
+          let container = document.createElement("div");
+          container.classList.add("user-name-comment");
+
+          let name = document.createElement("h4");
+          name.innerHTML = review.user;
+          container.appendChild(name);
+
+          let comment = document.createElement("span");
+          comment.innerHTML = review.comment;
+          container.appendChild(comment);
+
+          let rating = document.createElement("span");
+          rating.style.fontSize = "14px";
+          rating.innerHTML = `<br><br><i>This user rated their experience ${review.rating}/5</i>`;
+          container.appendChild(rating);
+
+          card.appendChild(container);
+          testimonials.appendChild(card);
+        }
       }
     }
     
