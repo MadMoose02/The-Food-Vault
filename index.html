@@ -10,7 +10,8 @@
     <style>
       .vertical-card {
         height: 350px;
-        background-color: #8caab1;
+        background-image: linear-gradient( 109.6deg, rgb(47, 255, 245) 11.2%, rgb(184, 190, 245) 91.1% );
+
       }
 
       .vertical-card:hover {
@@ -18,8 +19,10 @@
       }
 
       .horizontal-card {
-        height: 160px;
+        height: 140px;
         width: 100%;
+        background: rgb(238,174,202);
+        background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
       }
 
       .member-name {
@@ -61,16 +64,19 @@
         <br>
 
         <!-- Trending section -->
-        <section id="trending">
+        <section id="trending" style="background-color: white; border-radius: 15px;">
+          <br>
           <h2><b>See Which Places Are Trending</b></h2>
           <hr><br>
           <div id="trending-container" class="vertical-container" style="width: 100%;"></div>
           <hr>
         </section>
 
+        <br><br>
+
         <!-- Special Credits -->
-        <section id="credits">
-          <br><br><br>
+        <section id="credits" style="background-color: white; border-radius: 15px;">
+          <br>
           <h2><b>Made With Love By Team Kil-A-Bytes</b></h2>
           <hr><br>
 
@@ -120,7 +126,7 @@
         </section>
 
       </div>
-      <br><br><hr>
+      <hr>
 
       <!-- Modal Container for Pop-ups -->
       <div id="restaurant-modal-container" class="modal"></div>

@@ -19,6 +19,7 @@ footer {
   width: 100%;
   margin: 0 auto;
   background-color: white;
+  border-radius: 10px;
 }
 
 h1, h2, h3 {
@@ -337,47 +338,6 @@ button.selected {
 
   .horizontal-card {
     width: 95%;
-  }
-  
-  /* minor adjustments for testimonial form */
-  #review {
-    width: 95%;
-    margin: 0 auto;
-  }
-
-  .data-entry-area {
-    width: 200px;
-  }
-
-  textarea.data-entry-area {
-    height: 100px;
-  }
-
-  #restaurant-listing {
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  #restaurant-listing > .vertical-container {
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  #restaurant-listing > .vertical-card {
-    width: 100%;
-  }
-
-  .restaurant-card {
-    width: 100%;
-  }
-
-  #restaurant-name {
-    font-size: 15px;
-  }
-
-  #details-container > h3 {
-    font-size: 12px;
   }
 
   #modal-window-body {

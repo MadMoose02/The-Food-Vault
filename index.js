@@ -103,7 +103,7 @@ function createRestaurantModal(restaurant) {
         <h3>Rating: ${restaurant.rating}</h3>
         <h3>Address: ${restaurant.address}</h3>
         <h3>Phone: ${formatPhoneNumber(restaurant.contact)}</h3>
-        <h3>Website: ${restaurant.website ? restaurant.website : "No Website"}</h3>
+        <h3>Website: ${restaurant.website ? `<a href="${restaurant.website}" target="_blank">Click Here</a>` : "No website available"}</h3>
         <br>
     `;
     modalContent.appendChild(modalContentBody);
@@ -166,9 +166,14 @@ async function generateTrending() {
         let trendingRestaurant = document.createElement('div');
         trendingRestaurant.classList.add('vertical-card');
         trendingRestaurant.innerHTML = `
-            <h2><b>${trendingList[i].name}</b></h2>
-            <h3>Rating: ${trendingList[i].rating}</h3>
-            <h3>Area: ${trendingList[i].AreasMMList[0].name}</h3>
+            <div style="display: flex; flex-direction: column; flex: 4; justify-content: center;">
+                <h2><b>${trendingList[i].name}</b></h2>
+            </div>
+            <div style="display: flex; flex-direction: column; flex: 3;">
+                <h3>Rating: ${trendingList[i].rating}</h3>
+                <h3>Area: ${trendingList[i].AreasMMList[0].name}</h3>
+                <h3>Cuisine: ${trendingList[i].CuisinesMMList[0].style}</h3>
+            </div>
         `;
         trendingRestaurant.setAttribute("id", `trending-restaurant-${i}`);
         trendingRestaurant.style.cursor = "pointer";
