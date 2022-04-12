@@ -90,9 +90,8 @@ function createRestaurantModal(restaurant) {
     // Populate modal content view area
     let modalContentHeader = document.createElement('h2');
     modalContentHeader.setAttribute("id", "modal-window-heading");
-    modalContentHeader.innerHTML = `
-        <b>${restaurant.name}</b>
-    `;
+    modalContentHeader.style.paddingBottom = "14px";
+    modalContentHeader.innerHTML = `<b>${restaurant.name}</b>`;
     modalContent.appendChild(modalContentHeader);
 
     let modalContentBody = document.createElement('div');
@@ -123,7 +122,6 @@ function createRestaurantModal(restaurant) {
     closeButton.setAttribute("id", "modal-close-button");
     closeButton.setAttribute("onclick", `closeRestaurantModal(this.parentElement.parentElement)`);
     closeButton.classList.add("modal-close-btn");
-    closeButton.style.marginTop = "15px";
     closeButton.innerHTML = "&times;";
     modalContent.appendChild(closeButton);
 
@@ -181,7 +179,6 @@ async function generateTrending() {
         document.getElementById("trending-container").appendChild(trendingRestaurant);
     }
 }
-
 
 // Div-builder for restaurant listing
 function createRestaurantCardItem(restaurant) {
@@ -403,8 +400,8 @@ async function displayRestaurantData() {
 
 // Close modal, if open, when user clicks outside of it
 window.onclick = function(event) {
-    let modal = document.getElementById("restaurant-modal-container");
+    let modal = document.querySelector('.modal');
     if (event.target == modal) {
-        closeModal(modal);
+        closeRestaurantModal(modal);
     }
 }

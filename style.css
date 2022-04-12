@@ -39,7 +39,7 @@ a {
 }
 
 #main-nav-bar {
-  width: 920px;
+  width: 900px;
   height: 60px;
   background-color: #333;
   display: flex;
@@ -224,6 +224,7 @@ button.selected {
   padding: 5px;
   font-size: 20px;
   font-weight: bold;
+  margin-top: 20px;
 }
 
 .modal-close-btn:hover, .modal-close-btn:focus {
@@ -361,5 +362,10 @@ button.selected {
   #modal-window-map-container > iframe {
     height: 100%;
     width: 100%;
+  }
+
+  #modal-close-button {
+    margin-top: 35px;
+    height: 40px;
   }
 }

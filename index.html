@@ -26,11 +26,41 @@
       }
 
       .member-name {
+        display: flex;
         flex: 6.5;
+        justify-content: center;
+        align-items: center;
       }
 
       .member-roles {
         flex: 3.5;
+        justify-content: center;
+        align-items: center;
+      }
+
+      @media screen and (max-width: 600px) {
+        h2 {
+          padding-left: 5px;
+          padding-right: 5px;
+          font-size: 1.3em;
+          margin: 0;
+        }
+
+        h3 {
+          padding-left: 5px;
+          padding-right: 5px;
+          font-size: 1em;
+        }
+
+        #trending-container > .vertical-card {
+          width: 75%;
+          height: 280px;
+        }
+
+        .horizontal-card {
+          width: 120%;
+          flex-direction: column;
+        }
       }
 
     </style>
@@ -51,13 +81,15 @@
       <div id="page-content">
 
         <!-- Main Navigation bar for top of page -->
-        <nav id="main-nav-bar" class="nav-bar">
-          <ul class="links-container">
-            <a href="index.html"><button class="selected">Home</button></a>
-            <a href="testimonials.html"><button>Testimonials</button></a>
-            <a href="catalogue.html"><button>Catalogue</button></a>
-          </ul>
-        </nav>
+        <div style="justify-content: center;">
+          <nav id="main-nav-bar" class="nav-bar">
+            <ul class="links-container">
+              <a href="index.html"><button class="selected">Home</button></a>
+              <a href="testimonials.html"><button>Testimonials</button></a>
+              <a href="catalogue.html"><button>Catalogue</button></a>
+            </ul>
+          </nav>
+        </div>
 
         <br><br>
         <h1><b>Welcome to<br>The Food Vault</b></h1>
@@ -77,13 +109,13 @@
         <!-- Special Credits -->
         <section id="credits">
           <br>
-          <h2><b>Made With Love By Team Kil-A-Bytes</b></h2>
+          <h2 style="padding: 10px"><b>Made With Love By Team Kil-A-Bytes</b></h2>
           <hr><br>
 
           <div id="credits-container" class="horizontal-container" style="width: 70%;">
             <div id="team-member-1" class="horizontal-card">
               <div class="member-name">
-                <h2>Amelia Seemungal</h2>
+                <h2><b>Amelia Seemungal</b></h2>
               </div>
               <div class="member-roles">
                 <h3>UI Design</h3>
@@ -93,7 +125,7 @@
 
             <div id="team-member-2" class="horizontal-card">
               <div class="member-name">
-                <h2>Keshan Moosai</h2>
+                <h2><b>Keshan Moosai</b></h2>
               </div>
               <div class="member-roles">
                 <h3>UI Design</h3>
@@ -103,7 +135,7 @@
 
             <div id="team-member-3" class="horizontal-card">
               <div class="member-name">
-                <h2>Shaniah Baldeo</h2>
+                <h2><b>Shaniah Baldeo</b></h2>
               </div>
               <div class="member-roles">
                 <h3>UI Implementation</h3>
@@ -113,7 +145,7 @@
 
             <div id="team-member-4" class="horizontal-card">
               <div class="member-name">
-                <h2>Ricardo Ramdeen</h2>
+                <h2><b>Ricardo Ramdeen</b></h2>
               </div>
               <div class="member-roles">
                 <h3>UI Implementation</h3>
