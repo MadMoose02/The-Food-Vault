@@ -190,7 +190,6 @@ function createRestaurantCardItem(restaurant) {
     card.className = "horizontal-card";
     card.style.height = "120px";
     card.style.width = "80%";
-    card.style.backgroundColor = "aliceblue";
     card.style.boxShadow = "0px 0px 10px #888888";
     card.style.justifyContent = "center";
     card.style.alignItems = "center";
@@ -199,16 +198,17 @@ function createRestaurantCardItem(restaurant) {
     // add a vertical container to card
     let vertical_container = document.createElement("div");
     vertical_container.className = "vertical-container";
-
+    
     // create card header
     let card_header = document.createElement("h2")
     card_header.setAttribute("id", "restaurant-name");
-    card_header.className = "vertical-card";
     card_header.style.margin = "0 auto";
     card_header.style.marginLeft = "10px";
     card_header.style.padding = "10px";
     card_header.style.boxShadow = "none";
     card_header.style.backgroundColor = "aliceblue";
+    card_header.style.flex = "7";
+    card_header.style.borderRadius = "15px";
     card_header.innerHTML = restaurant.name;
     vertical_container.appendChild(card_header);
 
@@ -216,6 +216,7 @@ function createRestaurantCardItem(restaurant) {
     let inner_horizontal_container = document.createElement("div");
     inner_horizontal_container.setAttribute("id", "details-container");
     inner_horizontal_container.className = "horizontal-container";
+    inner_horizontal_container.style.flex = "6";
 
     let card_bodies = [];
 
@@ -290,7 +291,7 @@ function displayRestaurantList(cuisine_id, area_id, rating) {
 
     let headingHTML = `
         <br>
-        <div class="vertical-container" style="width: 100%">
+        <div style="width: 100%">
         <h2 style="margin: 0 auto; padding-top: 15px; padding-bottom: 15px"><b>${heading}</b></h2>
         <br>
         </div>
@@ -353,6 +354,7 @@ function displayRestaurantList(cuisine_id, area_id, rating) {
         button.setAttribute("id", "return-button");
         button.setAttribute("onclick", "scrollToTop()");
         button.innerHTML = "Go Back Up";
+        button.style.marginBottom = "20px";
 
         // Append button to div and append div to restaurantsDisplayContainer
         div.appendChild(button);
@@ -378,6 +380,7 @@ async function displayRestaurantData() {
 
     // If no filters are selected, display all cuisines to select from
     if (cuisine == "all" && area == "all" && rating == "all") {
+        restaurantsDisplayContainer.style.paddingTop = "20px";
         restaurantsDisplayContainer.innerHTML = "";
 
         // Check if there are any restaurants listed under each cuisine before adding to the list

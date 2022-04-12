@@ -9,7 +9,7 @@
     <title>Testimonials</title>
     <style>
       .horizontal-card {
-        background-color: white;
+        background: linear-gradient(to bottom, #dec9c9, #f1b8b8);
       }
 
       .user-name-comment {
@@ -19,12 +19,13 @@
       }
 
       fieldset {
+        width: 90%;
         border-radius: 10px;
         margin: 0;
         margin-top: 10px;
         border: 1px solid #ccc;
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
-        background: linear-gradient(to bottom, #f2f2f2, #fafafa);
+        background: linear-gradient(to bottom, #dec9c9, #f1b8b8);
       }
 
       @media screen and (max-width: 600px) {
@@ -37,7 +38,7 @@
           width: 200px;
         }
 
-        textarea.data-entry-area {
+        textarea {
           height: 100px;
         }
       }
@@ -67,72 +68,77 @@
           </ul>
         </nav>
 
-          <!-- Testimonials section -->
-          <section id="testimonials">
-            <br><br>
-            <h2><b>See What Our Users Have To Say About Us!</b></h2>
-            <hr><br>
-            <div class="horizontal-container">
-              <div class="horizontal-card">
-                <div class="user-name-comment">
-                  <h4>Mary Jane</h4>
-                  <span>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
-                  </span>
-                </div>
-              </div>
-              <div class="horizontal-card">
-                <div class="user-name-comment">
-                  <h4>John Doe</h4>
-                  <span>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
-                  </span>
-                </div>
-                
-              </div>
-              <div class="horizontal-card">
-                <div class="user-name-comment">
-                  <h4>Another Irrelevant Person</h4>
-                  <span>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
-                  </span>
-                </div>
-                
+        <br><br>
+        
+        <!-- Testimonials section -->
+        <section id="testimonials">
+          <br>
+          <h2><b>See What Our Users Have To Say About Us!</b></h2>
+          <hr>
+          <div class="horizontal-container">
+            <div class="horizontal-card">
+              <div class="user-name-comment">
+                <h4>Mary Jane</h4>
+                <span>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
+                </span>
               </div>
             </div>
-          </section>
+            <div class="horizontal-card">
+              <div class="user-name-comment">
+                <h4>John Doe</h4>
+                <span>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
+                </span>
+              </div>
+              
+            </div>
+            <div class="horizontal-card">
+              <div class="user-name-comment">
+                <h4>Another Irrelevant Person</h4>
+                <span>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam aperiam aliquid autem qui est architecto amet eius inventore cum. Dolores quibusdam beatae minima blanditiis mollitia sunt in laudantium molestiae tempore?
+                </span>
+              </div>
+              
+            </div>
+          </div>
+          <br>
+        </section>
+        
+        <br><br><br>
 
-          <!-- User review section -->
-          <section id="add-review" class="horizontal-container">
-            <br><br>
-            <h2><b>Have Something To Say About Our Service?</b></h2>
-            <hr><br>
-            <fieldset id="review-form-outline">
-              <form id="review">
-                <br><br>
-                <b><legend>Let Us Know Your Thoughts!</legend></b>
+        <!-- User review section -->
+        <section id="add-review">
+          <br>
+          <h2><b>Have Something To Say About Our Service?</b></h2>
+          <hr><br>
+          <fieldset id="review-form-outline" style="margin: 0 auto; justify-content: center;">
+            <form id="review">
+              <br><br>
+              <legend><h3><b>Let Us Know Your Thoughts!</b></h3></legend>
+              <br>
+
+                <!-- Name Data field -->
+                <label class="label">Name:</label>
                 <br>
+                <input name="Name" class="data-entry-area">
+                <br><br>
 
-                  <!-- Name Data field -->
-                  <label class="label">Name:</label>
-                  <br>
-                  <input name="Name" class="data-entry-area">
-                  <br><br>
-
-                  <!-- Comment Data field -->
-                  <label class="label">Comment:</label>
-                  <br> 
-                  <textarea name="comment" class="data-entry-area"></textarea>
-                  <br><br>
-                  
-                  <input type="button" class="data-entry-area" value="Submit Review" style="background: #333; color: white; border: 0px;">
-                  <p style="padding-top: 12px;">Tip: You can leave the "Name" field blank if you wish to be anonymous.</p>
-              </form>
-            </fieldset>
-          </section>
-        </div>
-        <br><br><hr>
-
+                <!-- Comment Data field -->
+                <label class="label">Comment:</label>
+                <br> 
+                <textarea name="comment" class="data-entry-area" style="height: 120px;"></textarea>
+                <br><br>
+                
+                <input type="button" class="data-entry-area" value="Submit Review" style="background: #333; color: white; border: 0px;">
+                <p style="padding-top: 12px;">Tip: You can leave the "Name" field blank if you wish to be anonymous.</p>
+            </form>
+          </fieldset>
+          <br>
+        </section>
+        <br>
+      </div>
     </main>
 
     <!-- Button to Expand Chat-area -->

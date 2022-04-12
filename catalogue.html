@@ -9,11 +9,13 @@
     <title>Catalogue</title>
     <style>
       fieldset {
-        border: 2px solid; 
-        border-radius: 10px; 
-        background-color: white; 
+        border: 0;
         width: 70%;
         margin: 0 auto;
+        border-radius: 10px; 
+        /* background: linear-gradient(90deg, #c489e8d6 0%, #838cff 100%);*/
+        background: linear-gradient(90deg, #e1b5fc 0%, #aac5f3 100%); 
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
       }
 
       #filter-catalogue {
@@ -33,9 +35,13 @@
         min-width: 60px;
       }
 
-      .horizontal-card:hover {
+      .vertical-card, .horizontal-card {
+        background: aliceblue;
+      }
+
+      #restaurant-listing > .vertical-container:hover, .horizontal-container:hover, .horizontal-card:hover {
         cursor: pointer;
-        background-color: #ffffff49;
+        background: white;
       }
 
       #restaurant-listing {
@@ -64,7 +70,7 @@
         }
 
         #restaurant-listing > .vertical-card {
-          width: 100%;
+          width: 80%;
         }
 
         .restaurant-card {
@@ -154,12 +160,14 @@
           </ul>
         </nav>
 
-        <!-- Catalogue filter area -->
         <br><br>
-        <h2><b>Browse Our Catalogue</b></h2>
-        <hr><br>
         
+        <!-- Catalogue filter area -->
         <section id="filter-section">
+          <br>
+          <h2><b>Browse Our Catalogue</b></h2>
+          <hr><br>
+          
           <fieldset>
             <form id="filter-catalogue">
               <br>
@@ -188,13 +196,15 @@
               <p>(You can always search our entire catalogue for all areas by searching from the get-go!)</p>
             </form>
           </fieldset>
+          <br>
         </section>
 
         <br><br>
 
         <!-- Restaurant Listing from Database -->
-        <div id="restaurant-listing" class="vertical-container"></div>
-        <br><br><hr>
+        <section>
+          <div id="restaurant-listing" class="vertical-container"></div>
+        </section>
 
         <!-- Modal Container for Pop-ups -->
         <div id="restaurant-modal-container" class="modal"></div>
