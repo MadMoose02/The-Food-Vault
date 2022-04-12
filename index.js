@@ -8,19 +8,16 @@ let displayContainer = document.getElementById("restaurant-listing");
 
 // GET for hosted NocoDB database
 async function pullData(table) {
-  let results = {};
-  let response = await fetch(
-    `https://the-food-vault.herokuapp.com/nc/the_food_vault_scbp/api/v1/${table}?limit=100`,
-    {
-      headers: {
+    let results = {};
+    let response = await fetch(`https://the-food-vault.herokuapp.com/nc/the_food_vault_scbp/api/v1/${table}?limit=100`, {
+        headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'xc-auth' : auth
-      }
-    }
-  );
-  results = await response.json();
-  return results;
+        }
+    });
+    results = await response.json();
+    return results;
 }
 
 // Populate data objects
@@ -84,13 +81,12 @@ function createRestaurantModal(restaurant) {
     
     // Create modal content view area
     let modalContent = document.createElement('div');
-    modalContent.classList.add('modal-content', 'horizontal-container');
+    modalContent.classList.add('modal-content');
     modalContent.style.marginTop = "25px";
 
     // Populate modal content view area
     let modalContentHeader = document.createElement('h2');
     modalContentHeader.setAttribute("id", "modal-window-heading");
-    modalContentHeader.style.paddingBottom = "14px";
     modalContentHeader.innerHTML = `<b>${restaurant.name}</b>`;
     modalContent.appendChild(modalContentHeader);
 
@@ -114,6 +110,7 @@ function createRestaurantModal(restaurant) {
     mapContainer.style.alignItems = "center";
     mapContainer.style.border = "2.5px solid #ccc";
     mapContainer.style.margin = "0 auto";
+    mapContainer.style.width = "fit-content";
     mapContainer.innerHTML = restaurant.google_maps;
     modalContent.appendChild(mapContainer);
     

@@ -192,6 +192,10 @@ button.selected {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
+option {
+  text-align: center;
+}
+
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
@@ -202,7 +206,6 @@ button.selected {
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: hidden; /* Disable scroll */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
@@ -210,11 +213,13 @@ button.selected {
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto; /* 15% from the top and centered */
+  margin: auto;
+  margin-top: 20%;
+  margin-bottom: 20%;
   padding: 20px;
   border: 1px solid #888;
   height: 90vh;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 60%; /* Could be more or less, depending on screen size */
   border-radius: 15px;
   overflow-y: auto;
 }
@@ -232,6 +237,11 @@ button.selected {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+#modal-window-heading {
+  padding-top: 15px;
+  padding-bottom: 10px;
 }
 
 .selection-list {
@@ -347,12 +357,26 @@ button.selected {
     width: 95%;
   }
 
+  .modal-content {
+    width: 80%;
+    height: 85%;
+  }
+
+  #modal-window-heading {
+    padding-top: 0;
+    padding-bottom: 5px;
+    margin: auto;
+  }
+
   #modal-window-body {
+    margin: auto;
     height: fit-content;
   }
 
   #modal-window-body > h3 {
     font-size: 15px;
+    margin: 7px;
+    padding: 0;
   }
 
   #modal-window-map-container {
@@ -366,7 +390,7 @@ button.selected {
   }
 
   #modal-close-button {
-    margin-top: 35px;
+    margin-top: 25px;
     height: 40px;
   }
 }
