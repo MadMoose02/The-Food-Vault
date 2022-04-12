@@ -246,7 +246,6 @@ function createRestaurantCardItem(restaurant) {
     return card;
 }
 
-
 // Display restaurants for given cuisine
 function displayRestaurantList(cuisine_id, area_id, rating) {
     let cuisine_style = '';
@@ -367,7 +366,7 @@ function displayRestaurantList(cuisine_id, area_id, rating) {
 }
 
 // Populate restaurant-listing area
-async function displayData() {
+async function displayRestaurantData() {
     let cuisine   = document.getElementById("cuisine-selections").value;
     let area      = document.getElementById("area-selections").value;
     let rating    = document.getElementById("rating-selections").value;
