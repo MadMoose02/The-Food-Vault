@@ -46,6 +46,34 @@
         padding: "20px";
       }
 
+      @media screen and (max-width: 600px) {
+        #restaurant-listing {
+          width: 100%;
+          margin: 0 auto;
+        }
+
+        #restaurant-listing > .vertical-container {
+          width: 100%;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        #restaurant-listing > .vertical-card {
+          width: 100%;
+        }
+
+        .restaurant-card {
+          width: 100%;
+        }
+
+        #restaurant-name {
+          font-size: 15px;
+        }
+
+        #details-container > h3 {
+          font-size: 12px;
+        }
+      }
     </style>
     <script>
       async function populateObjects() {
