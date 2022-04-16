@@ -44,13 +44,14 @@ function scrollToTop() {
 // Open Side nav bar
 function openChatArea() {
     document.getElementById("chatbot-area").classList.remove("collapsed");
-    // document.getElementById("chatbot-area").style.width = "390px";
+    document.getElementById("app").style.overflow = "hidden";
     document.getElementById("page-content").style.marginLeft = "510px";
 }
 
 // Close side nav bar
 function closeChatArea() {
     document.getElementById("chatbot-area").style.width = "0";
+    document.getElementById("app").style.overflow = "auto";
     document.getElementById("page-content").style.marginLeft = "0";
 }
 
