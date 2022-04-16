@@ -87,6 +87,24 @@
       }
     </style>
     <script>
+      // Set the value of the filters to the pre-fetch values if they exist
+      function prefetchUpdate() {
+        let prefetchArray = window.location.href.split("?");
+        
+        if (prefetchArray.length > 1) {
+          let prefetchFilters = prefetchArray[1].split("&");
+          let prefetchFiltersArray = [];
+          for (let i = 0; i < prefetchFilters.length; i++) {
+            prefetchFiltersArray.push(prefetchFilters[i].split("="));
+          }
+          for (let i = 0; i < prefetchFiltersArray.length; i++) {
+            let filter = prefetchFiltersArray[i][0] + "-selections";
+            let value = prefetchFiltersArray[i][1];
+            document.getElementById(filter).value = value;
+          }
+        }
+      }
+
       async function populateObjects() {
         cuisines    = await pullData('Cuisines');
         areas       = await pullData('Areas');
@@ -102,6 +120,7 @@
           // Add the option to the selection list
           document.getElementById('area-selections').appendChild(option);
         }
+        console.log("Loaded areas");
 
         // Loop through the JSON and add the cuisines to the selection list
         for (let cuisine of cuisines) {
@@ -113,6 +132,7 @@
           // Add the option to the selection list
           document.getElementById('cuisine-selections').appendChild(option);
         }
+        console.log("Loaded cuisines");
 
         // Initialise all ratings
         let ratings = [];
@@ -132,9 +152,14 @@
             ratings.push(curr_rating);
           }
         }
+        console.log("Loaded ratings");
+
+        // Update filter values if prefetch values exist
+        prefetchUpdate();
       }
 
       document.addEventListener('DOMContentLoaded', populateObjects);
+
     </script>
   </head>
   
@@ -175,21 +200,21 @@
               <br>
               <label>Choose a cuisine/style:</label>
               <br>
-              <select id="cuisine-selections" class="selection-list">
+              <select id="cuisine-selections" class="selection-list" name="cuisine">
                 <option value="all">Any</option>
               </select>
               <br><br>
 
               <label>Choose a location:</label>
               <br>
-              <select id="area-selections" class="selection-list">
+              <select id="area-selections" class="selection-list" name="area">
                 <option value="all">Any</option>
               </select>
               <br><br>
 
               <label>Choose a rating:</label>
               <br>
-              <select id="rating-selections" class="selection-list">
+              <select id="rating-selections" class="selection-list" name="rating">
                 <option value="all">Any</option>
               </select>
               <br><br>
