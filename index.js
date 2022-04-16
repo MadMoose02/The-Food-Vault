@@ -5,6 +5,7 @@ let cuisines = {};
 let areas = {};
 let restaurants = {};
 let displayContainer = document.getElementById("restaurant-listing");
+let catalogueLoaded  = false;
 
 // GET for hosted NocoDB database
 async function pullData(table) {
