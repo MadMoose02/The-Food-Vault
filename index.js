@@ -35,24 +35,24 @@ restaurantsDisplayContainer = document.getElementById('restaurant-listing');
 
 // Function to scroll to top of page
 function scrollToTop() {
-    // For Safari - because apple people just *special*
-    document.body.scrollTop = 0;
-    // For Chrome, Firefox, IE and Opera
-    document.documentElement.scrollTop = 0;
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 }
 
 // Open Side nav bar
 function openChatArea() {
     document.getElementById("chatbot-area").classList.remove("collapsed");
+    document.getElementById("page-content").style.marginLeft = "50vw";
     document.getElementById("app").style.overflow = "hidden";
-    document.getElementById("page-content").style.marginLeft = "510px";
 }
 
 // Close side nav bar
 function closeChatArea() {
-    document.getElementById("chatbot-area").style.width = "0";
-    document.getElementById("app").style.overflow = "auto";
+    document.getElementById("chatbot-area").classList.add("collapsed");
     document.getElementById("page-content").style.marginLeft = "0";
+    document.getElementById("app").style.overflow = "auto";
 }
 
 function formatPhoneNumber(phoneNumberString) {
@@ -395,6 +395,12 @@ async function displayRestaurantData() {
     else {
         displayRestaurantList(cuisine, area, rating);
     }
+
+    // When done, scroll down to the display area (with transition)
+    window.scrollTo({
+        top: restaurantsDisplayContainer.offsetTop,
+        behavior: "smooth"
+    });
 }
 
 // Close modal, if open, when user clicks outside of it

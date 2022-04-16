@@ -25,6 +25,11 @@ h1, h2, h3 {
   text-align: center;
 }
 
+h2 {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 a {
   text-decoration: black;
 }
@@ -60,6 +65,7 @@ a {
   display: none;
 }
 
+
 .side-nav {
   height: 100%;
   width: 0;
@@ -91,13 +97,19 @@ a {
   width: 40px;
 }
 
+#chatbot-area {
+  width: 35vw;
+  height: 100vh;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
 #page-content {
   max-width: 900px;
   padding: 20px;
   transition: 0.2s;
   justify-content: center;
 }
-
 
 button {
   cursor: pointer;
@@ -331,11 +343,18 @@ footer > a {
     width: 0px;
   }
 
-  /* disable vertical page scrolling for chat area */
   #chatbot-area {
     width: 100vw;
     overflow-y: hidden;
     overflow-x: hidden;
+  }
+
+  #chatbot-area > a {
+    height: 35px
+  }
+
+  #chatbot-area > iframe {
+    height: calc(90vh - 100px);
   }
 
   section {
@@ -365,7 +384,7 @@ footer > a {
 
   .modal-content {
     width: 80%;
-    height: 85%;
+    height: calc(90vh - 85px);
   }
 
   #modal-window-heading {

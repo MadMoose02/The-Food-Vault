@@ -222,11 +222,11 @@
     // Prevent reload on submit
     function formProcessing(e) {
       e.preventDefault();
-      var name = form.Name.value;
+      var name = form.Name.value === "" ? "Anonymous" : form.Name.value;
       var comment = form.comment.value;
       var rating = form.rating.value;
-      if (name == "" || comment == "") {
-        alert(`Please fill in all fields`);
+      if (comment == "") {
+        alert(`We at least need to know what you have to say!`);
       } else {
         alert(`Thank you for your review!`);
         addReview(name, comment, rating);
