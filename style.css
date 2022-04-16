@@ -99,6 +99,8 @@ a {
 
 #chatbot-area {
   width: 35vw;
+  max-width: 450px;
+  min-width: 380px;
   height: 100vh;
   overflow-y: hidden;
   overflow-x: hidden;
