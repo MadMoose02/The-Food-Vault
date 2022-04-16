@@ -44,7 +44,7 @@ function scrollToTop() {
 // Open Side nav bar
 function openChatArea() {
     document.getElementById("chatbot-area").classList.remove("collapsed");
-    document.getElementById("chatbot-area").style.width = "390px";
+    // document.getElementById("chatbot-area").style.width = "390px";
     document.getElementById("page-content").style.marginLeft = "510px";
 }
 
