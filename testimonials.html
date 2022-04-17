@@ -105,7 +105,7 @@
               <br>
 
               <!-- Name Data field -->
-              <label class="label">How Do We Call You?</label>
+              <label class="label">What's Your Name?</label>
               <br><br>
               <input name="Name" class="data-entry-area">
               <br><br><br>
@@ -175,7 +175,7 @@
       let reviews = await pullData("Reviews");
 
       for (let review of reviews) {
-        if (review.rating > 3) {
+        if (review.rating > 0) {
           let card = document.createElement("div");
           card.classList.add("horizontal-card");
 
