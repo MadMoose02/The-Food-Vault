@@ -288,7 +288,7 @@ function displayRestaurantList(cuisine_id, area_id, rating) {
     let headingHTML = `
         <br>
         <div style="width: 100%">
-        <h2 style="margin: 0 auto; padding-top: 15px; padding-bottom: 15px"><b>${heading}</b></h2>
+        <h2 style="padding-top: 15px; padding-bottom: 15px; margin-left: 5px; margin-right: 5px;"><b>${heading}</b></h2>
         <br>
         </div>
     `;
