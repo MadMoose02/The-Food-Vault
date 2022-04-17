@@ -44,7 +44,7 @@ function scrollToTop() {
 // Open Side nav bar
 function openChatArea() {
     document.getElementById("chatbot-area").classList.remove("collapsed");
-    document.getElementById("page-content").style.marginLeft = "28vw";
+    document.getElementById("page-content").style.marginLeft = "vw";
     document.getElementById("app").style.overflow = "hidden";
 }
 
@@ -96,7 +96,7 @@ function createRestaurantModal(restaurant) {
     modalContentBody.setAttribute("id", "modal-window-body");
     modalContentBody.innerHTML = `
         <h3>Dine In: ${restaurant.dine_in ? "Yes" : "No"}</h3>
-        <h3>Take Out: ${restaurant.take_out ? "Yes" : "No"}</h3>
+        <h3>Take Out: ${restaurant.take_away ? "Yes" : "No"}</h3>
         <h3>Rating: ${restaurant.rating}</h3>
         <h3>Address: ${restaurant.address}</h3>
         <h3>Phone: ${formatPhoneNumber(restaurant.contact)}</h3>
@@ -224,7 +224,7 @@ function createRestaurantCardItem(restaurant) {
 
     let card_body_2 = document.createElement("h3")
     card_body_2.setAttribute("id", "take-out");
-    card_body_2.innerHTML = `Take Out: ${restaurant.take_out ? "Yes" : "No"}`;
+    card_body_2.innerHTML = `Take Out: ${restaurant.take_away ? "Yes" : "No"}`;
     card_bodies.push(card_body_2);
 
     let card_body_3 = document.createElement("h3")
@@ -302,33 +302,33 @@ function displayRestaurantList(cuisine_id, area_id, rating) {
         // ensure cuisine matches
         if (restaurants[i].CuisinesMMList[0].id == cuisine_id || cuisine_id === 'all') {
 
-        // check all filters
-        if (area_id === 'all' && rating === 'all') {
-            console.log('Displaying all ' + restaurants[i].CuisinesMMList[0].style + ' restaurants');
-            list.push(createRestaurantCardItem(restaurants[i]));
-        }
-        
-        else if (area_id !== 'all' && rating === 'all') {
-            if (restaurants[i].AreasMMList[0].id == area_id) {
-            console.log('Displaying restaurants in ' + area_name);
-            list.push(createRestaurantCardItem(restaurants[i]));
+            // check all filters
+            if (area_id === 'all' && rating === 'all') {
+                console.log('Displaying all ' + restaurants[i].CuisinesMMList[0].style + ' restaurants');
+                list.push(createRestaurantCardItem(restaurants[i]));
             }
-        }
-        
-        else if (area_id === 'all' && rating !== 'all') {
-            let rating_val = restaurants[i].rating;
-            if (rating_val >= Number(rating) && rating_val < Number(rating) + 1) {
-            console.log('Displaying restaurants with ' + rating + ' star rating');
-            list.push(createRestaurantCardItem(restaurants[i]));
+            
+            else if (area_id !== 'all' && rating === 'all') {
+                if (restaurants[i].AreasMMList[0].id == area_id) {
+                console.log('Displaying restaurants in ' + area_name);
+                list.push(createRestaurantCardItem(restaurants[i]));
+                }
             }
-        }
+            
+            else if (area_id === 'all' && rating !== 'all') {
+                let rating_val = restaurants[i].rating;
+                if (rating_val >= Number(rating) && rating_val < Number(rating) + 1) {
+                console.log('Displaying restaurants with ' + rating + ' star rating');
+                list.push(createRestaurantCardItem(restaurants[i]));
+                }
+            }
 
-        else if (area_id !== 'all' && rating !== 'all') {
-            if (restaurants[i].AreasMMList[0].id == area_id && restaurants[i].rating >= Number(rating) && restaurants[i].rating < Number(rating) + 1) {
-            console.log('Displaying restaurants in ' + area_name + ' with ' + rating + ' star rating');
-            list.push(createRestaurantCardItem(restaurants[i]));
+            else if (area_id !== 'all' && rating !== 'all') {
+                if (restaurants[i].AreasMMList[0].id == area_id && restaurants[i].rating >= Number(rating) && restaurants[i].rating < Number(rating) + 1) {
+                console.log('Displaying restaurants in ' + area_name + ' with ' + rating + ' star rating');
+                list.push(createRestaurantCardItem(restaurants[i]));
+                }
             }
-        }
         }
     }
 
